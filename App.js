@@ -6,6 +6,7 @@ export default function App() {
   return (
     <View style={styles.container}>
       <Text>Amigos divertidos</Text>
+      <Text>Alanis no admite que rompieron al Lápiz.</Text>
       <StatusBar style="auto" />
     </View>
   );

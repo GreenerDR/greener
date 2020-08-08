@@ -7,6 +7,7 @@ export default function App() {
     <View style={styles.container}>
       <Text>Amigos divertidos</Text>
       <Text>Alanis no admite que rompieron al Lápiz.</Text>
+      <Text>La vie est belle</Text>
       <StatusBar style="auto" />
     </View>
   );

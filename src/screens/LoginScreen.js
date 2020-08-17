@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, StyleSheet, Button } from 'react-native';
+import { View, StyleSheet, Text, Image, TouchableOpacity } from 'react-native';
 
 import * as Google from 'expo-google-app-auth';
 
@@ -20,7 +20,7 @@ export default class LoginScreen extends Component {
       if (result.type === 'success') {
         console.log('LoginScreen.js', result.user.givenName);
         this.props.navigation.navigate('Main', {
-          username: result.user.givenName,
+          username: result.user.name,
         }); // After Google Login redirect to Main screen
         return result.accessToken;
       } else {
@@ -35,7 +35,26 @@ export default class LoginScreen extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <Button title="Login with Google" onPress={this.signInWithGoogle} />
+        <View>
+          <Image
+            source={require('../../assets/logo1.jpg')}
+            style={styles.ImageLogoStyle}
+          />
+          <Text style={styles.mainTitle}>{'¡Bienvenido a\n Greener!'}</Text>
+        </View>
+        <View>
+          <TouchableOpacity
+            style={styles.googleStyle}
+            activeOpacity={0.5}
+            onPress={this.signInWithGoogle}
+          >
+            <Image
+              source={require('../../assets/googlebutton.png')}
+              style={styles.ImageIconStyle}
+            />
+            <Text>Iniciar Sesión con Google</Text>
+          </TouchableOpacity>
+        </View>
       </View>
     );
   }
@@ -44,8 +63,45 @@ export default class LoginScreen extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
+    backgroundColor: '#372a0c',
     alignItems: 'center',
-    justifyContent: 'center',
+    justifyContent: 'space-around',
+  },
+
+  mainTitle: {
+    flexDirection: 'row',
+    textAlign: 'center',
+    color: '#FFFFFF',
+    fontSize: 35,
+  },
+
+  googleStyle: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    backgroundColor: '#FFFFFF',
+    borderWidth: 0.5,
+    borderColor: '#fff',
+    height: 50,
+    width: 230,
+    borderRadius: 5,
+    margin: 0,
+  },
+
+  ImageIconStyle: {
+    padding: 10,
+    margin: 5,
+    height: 45,
+    width: 45,
+    resizeMode: 'stretch',
+  },
+
+  ImageLogoStyle: {
+    padding: 10,
+    margin: 5,
+    height: 200,
+    width: 200,
+    resizeMode: 'stretch',
+    overflow: 'hidden',
+    borderColor: '#372a0c',
   },
 });

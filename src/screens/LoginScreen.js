@@ -52,7 +52,7 @@ export default class LoginScreen extends Component {
               source={require('../../assets/googlebutton.png')}
               style={styles.ImageIconStyle}
             />
-            <Text>Iniciar Sesión con Google</Text>
+            <Text style={styles.textGoogle}>Iniciar Sesión con Google</Text>
           </TouchableOpacity>
         </View>
       </View>
@@ -82,16 +82,16 @@ const styles = StyleSheet.create({
     borderWidth: 0.5,
     borderColor: '#fff',
     height: 50,
-    width: 230,
+    width: 260,
     borderRadius: 5,
     margin: 0,
   },
 
   ImageIconStyle: {
     padding: 10,
-    margin: 5,
-    height: 45,
-    width: 45,
+    margin: -5,
+    height: 60,
+    width: 60,
     resizeMode: 'stretch',
   },
 
@@ -103,5 +103,9 @@ const styles = StyleSheet.create({
     resizeMode: 'stretch',
     overflow: 'hidden',
     borderColor: '#372a0c',
+  },
+
+  textGoogle: {
+    marginHorizontal: 20,
   },
 });

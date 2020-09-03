@@ -38,22 +38,39 @@ export default class LoginScreen extends Component {
         <View>
           <Image
             source={require('../../assets/logo1.jpg')}
-            style={styles.ImageLogoStyle}
+            style={styles.greenerLogo}
           />
           <Text style={styles.mainTitle}>{'¡Bienvenido a\n Greener!'}</Text>
         </View>
         <View>
-          <TouchableOpacity
-            style={styles.googleStyle}
-            activeOpacity={0.5}
-            onPress={this.signInWithGoogle}
-          >
-            <Image
-              source={require('../../assets/googlebutton.png')}
-              style={styles.ImageIconStyle}
-            />
-            <Text style={styles.textGoogle}>Iniciar Sesión con Google</Text>
-          </TouchableOpacity>
+          <View>
+            <TouchableOpacity
+              style={styles.googleButton}
+              activeOpacity={0.5}
+              onPress={this.signInWithGoogle}
+            >
+              <Image
+                source={require('../../assets/googlebutton.png')}
+                style={styles.googleIcon}
+              />
+              <Text style={styles.textGoogle}>Iniciar Sesión con Google</Text>
+            </TouchableOpacity>
+          </View>
+          <View>
+            <TouchableOpacity
+              style={styles.facebookButton}
+              activeOpacity={0.5}
+              onPress={this.signInWithGoogle}
+            >
+              <Image
+                source={require('../../assets/fblogo2.jpg')}
+                style={styles.facebookIcon}
+              />
+              <Text style={styles.textFacebook}>
+                Iniciar Sesión con Facebook
+              </Text>
+            </TouchableOpacity>
+          </View>
         </View>
       </View>
     );
@@ -75,7 +92,7 @@ const styles = StyleSheet.create({
     fontSize: 35,
   },
 
-  googleStyle: {
+  googleButton: {
     flexDirection: 'row',
     alignItems: 'center',
     backgroundColor: '#FFFFFF',
@@ -84,10 +101,23 @@ const styles = StyleSheet.create({
     height: 50,
     width: 260,
     borderRadius: 5,
-    margin: 0,
+    margin: 10,
   },
 
-  ImageIconStyle: {
+  facebookButton: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    backgroundColor: '#3b5998',
+    color: '#fff',
+    borderWidth: 0.5,
+    borderColor: '#3b5998',
+    height: 50,
+    width: 260,
+    borderRadius: 5,
+    margin: 10,
+  },
+
+  googleIcon: {
     padding: 10,
     margin: -5,
     height: 60,
@@ -95,7 +125,14 @@ const styles = StyleSheet.create({
     resizeMode: 'stretch',
   },
 
-  ImageLogoStyle: {
+  facebookIcon: {
+    padding: 10,
+    height: 40,
+    width: 40,
+    resizeMode: 'stretch',
+  },
+
+  greenerLogo: {
     padding: 10,
     margin: 5,
     height: 200,
@@ -107,5 +144,10 @@ const styles = StyleSheet.create({
 
   textGoogle: {
     marginHorizontal: 20,
+  },
+
+  textFacebook: {
+    marginHorizontal: 20,
+    color: '#ffffff',
   },
 });

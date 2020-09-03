@@ -37,7 +37,7 @@ export default class LoginScreen extends Component {
       <View style={styles.container}>
         <View>
           <Image
-            source={require('../../assets/logo1.jpg')}
+            source={require('../../assets/greenerlogo.jpg')}
             style={styles.greenerLogo}
           />
           <Text style={styles.mainTitle}>{'¡Bienvenido a\n Greener!'}</Text>
@@ -63,7 +63,7 @@ export default class LoginScreen extends Component {
               onPress={this.signInWithGoogle}
             >
               <Image
-                source={require('../../assets/fblogo2.jpg')}
+                source={require('../../assets/fblogo.jpg')}
                 style={styles.facebookIcon}
               />
               <Text style={styles.textFacebook}>

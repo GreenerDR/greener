@@ -6,9 +6,10 @@ import EventScreen from './src/screens/EventScreen';
 import GuideScreen from './src/screens/GuideScreen';
 
 const AppNavigator = createSwitchNavigator({
-  Maps: { screen: MapsScreen },
+  
   Login: { screen: LoginScreen },
   Main: { screen: MainScreen },
+  Maps: { screen: MapsScreen },
   Event: { screen: EventScreen },
   Guide: { screen: GuideScreen },
 });

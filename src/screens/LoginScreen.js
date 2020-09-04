@@ -19,7 +19,7 @@ export default class LoginScreen extends Component {
 
       if (result.type === 'success') {
         console.log('LoginScreen.js', result.user.givenName);
-        this.props.navigation.navigate('Main', {
+        this.props.navigation.navigate('Maps', {
           username: result.user.name,
         }); // After Google Login redirect to Main screen
         return result.accessToken;

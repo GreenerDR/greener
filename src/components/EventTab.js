@@ -14,20 +14,6 @@ export default class EventTab extends Component {
     render() {
         return (
             <View>
-                <Text>No hay eventos disponibles.</Text>
-
-                <TouchableOpacity
-                    style={styles.button}
-                    onPress={() => this.props.navigation.navigate('Main')}
-                >
-                    <Text style={styles.buttonText}>Volver a la pantalla principal.</Text>
-                    <Feather
-                        name="chevron-right"
-                        color="#372A0B"
-                        size={30}
-                        style={styles.iconGuide}
-                    />
-                </TouchableOpacity>
             </View>
         )
     }

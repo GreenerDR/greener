@@ -4,9 +4,9 @@ import { Marker } from 'react-native-maps';
 import * as Location from 'expo-location';
 import { StyleSheet, Text, View, Dimensions } from 'react-native';
 import MarkerData from '../utils/MarkerData';
+import MapsSearchBar from '../components/MapsSearchBar';
 
 let PlacesData = MarkerData();
-console.log(PlacesData, 'klk');
 
 export default class App extends React.Component {
   render() {
@@ -35,6 +35,9 @@ export default class App extends React.Component {
             />
           ))}
         </MapView>
+        <View style={styles.searchBar}>
+        <MapsSearchBar />
+        </View>
       </View>
     );
   }
@@ -47,7 +50,16 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   mapStyle: {
-    width: Dimensions.get('window').width,
-    height: Dimensions.get('window').height,
+    width: '100%',
+    height: '100%',
+  },
+  searchBar: {
+    alignItems: 'center',
+    justifyContent: 'center',
+    position: 'absolute',
+    left: 0,
+    top: -200,
+    width: '100%',
+    height: '100%',
   },
 });

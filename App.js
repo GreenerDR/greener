@@ -7,9 +7,11 @@ import GuideScreen from './src/screens/GuideScreen';
 
 const AppNavigator = createSwitchNavigator({
   
-  Login: { screen: LoginScreen },
-  Main: { screen: MainScreen },
+  //Guide: { screen: GuideScreen },
   Maps: { screen: MapsScreen },
+  Login: { screen: LoginScreen },
+  //Maps: { screen: MapsScreen },
+  Main: { screen: MainScreen },
   Event: { screen: EventScreen },
   Guide: { screen: GuideScreen },
 });

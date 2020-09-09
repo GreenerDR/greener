@@ -25,7 +25,7 @@ export default class App extends React.Component {
             <Marker
               key={index}
               icon={'defaut'}
-              pinColor={'yellow'}
+              pinColor={'red'}
               coordinate={{
                 latitude: item.latitude,
                 longitude: item.longitude,

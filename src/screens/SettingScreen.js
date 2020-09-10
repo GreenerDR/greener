@@ -92,9 +92,11 @@ const styles = StyleSheet.create({
     borderWidth: 1.5,
   },
   containerButton: {
-    marginHorizontal: 18,
-    marginVertical: 60,
-    alignSelf: 'flex-start',
+    backgroundColor: '#fff',
+    justifyContent: 'center',
+    width: 340,
+    height: 60,
+    marginTop: 20,
   },
   buttonText: {
     color: '#372A0B',

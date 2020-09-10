@@ -18,10 +18,10 @@ export default class LoginScreen extends Component {
       });
 
       if (result.type === 'success') {
-        console.log('LoginScreen.js', result.user.givenName);
-        this.props.navigation.navigate('Main', {
+        //console.log('LoginScreen.js', result.user.givenName);
+        this.props.navigation.navigate('Menus', {
           username: result.user.name,
-        }); // After Google Login redirect to Main screen
+        }); // After Google Login redirect to Menu
         return result.accessToken;
       } else {
         return { cancelled: true };

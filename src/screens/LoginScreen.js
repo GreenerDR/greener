@@ -2,11 +2,13 @@ import React, { Component } from 'react';
 import { View, StyleSheet, Text, Image, TouchableOpacity } from 'react-native';
 
 import * as Google from 'expo-google-app-auth';
+import * as Facebook from 'expo-facebook';
 
 const IOS_CLIENT_ID =
   '689620397216-uittnoqmbtteqaqud3v4ll1ngojcubqn.apps.googleusercontent.com';
 const ANDROID_CLIENT_ID =
   '689620397216-06l66tn5g3vh60tb5rfdcghnql64tfdd.apps.googleusercontent.com';
+const APP_ID = '1652493498261994';
 
 export default class LoginScreen extends Component {
   signInWithGoogle = async () => {
@@ -29,6 +31,35 @@ export default class LoginScreen extends Component {
     } catch (error) {
       console.log('LoginScreen.js', error);
       return { error: true };
+    }
+  };
+
+  signInWithFacebook = async () => {
+    try {
+      await Facebook.initializeAsync(APP_ID);
+      const {
+        type,
+        token,
+        expires,
+        permissions,
+        declinedPermissions,
+      } = await Facebook.logInWithReadPermissionsAsync({
+        permissions: ['public_profile'],
+      });
+      if (type === 'success') {
+        // Get the user's name using Facebook's Graph API
+        const response = await fetch(
+          `https://graph.facebook.com/me?access_token=${token}`,
+        );
+        this.props.navigation.navigate('Menus', {
+          response: response.json(),
+        });
+        console.log('Logged in!', `Hi ${(await response.json()).name}!`);
+      } else {
+        // type === 'cancel'
+      }
+    } catch ({ message }) {
+      alert(`Facebook Login Error: ${message}`);
     }
   };
 
@@ -60,7 +91,7 @@ export default class LoginScreen extends Component {
             <TouchableOpacity
               style={styles.facebookButton}
               activeOpacity={0.5}
-              onPress={this.signInWithGoogle}
+              onPress={this.signInWithFacebook}
             >
               <Image
                 source={require('../../assets/fblogo.jpg')}

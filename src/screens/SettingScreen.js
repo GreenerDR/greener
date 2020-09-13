@@ -8,7 +8,6 @@ import {
   Image,
 } from 'react-native';
 import { Feather } from '@expo/vector-icons';
-// import styles from '../css/styles';
 
 export default class SettingScreen extends Component {
   render() {

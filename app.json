@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "greenerA",
-    "slug": "greenerA",
+    "name": "greener",
+    "slug": "greener",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -10,12 +10,21 @@
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
+    "facebookScheme": "fb1652493498261994",
+    "facebookAppId": "1652493498261994",
+    "facebookDisplayName": "Greener",
     "updates": {
       "fallbackToCacheTimeout": 0
     },
     "assetBundlePatterns": ["**/*"],
     "ios": {
+      "bundleIdentifier": "com.greener.greener",
+      "buildNumber": "1.0.0",
       "supportsTablet": true
+    },
+    "android": {
+      "package": "com.greener.greener",
+      "versionCode": 1
     },
     "web": {
       "favicon": "./assets/favicon.png"

@@ -10,7 +10,7 @@ import GuideScreen from '../screens/GuideScreen';
 import MapsScreen from '../screens/MapsScreen';
 import EventScreen from '../screens/EventScreen';
 import SettingScreen from '../screens/SettingScreen';
-import LoginScreen from '../screens/LoginScreen';
+//import LoginScreen from '../screens/LoginScreen';
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();

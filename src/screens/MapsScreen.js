@@ -8,7 +8,7 @@ import MapsSearchBar from '../components/MapsSearchBar';
 
 let PlacesData = MarkerData();
 
-export default class App extends React.Component {
+export default class MapsScreen extends React.Component {
   render() {
     return (
       <View style={styles.container}>

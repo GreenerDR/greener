@@ -67,7 +67,6 @@ const styles = StyleSheet.create({
     marginBottom: -28,
     marginHorizontal: 15,
     marginVertical: -28,
-    resizeMode: 'contain',
   },
   iconX: {
     width: 30,

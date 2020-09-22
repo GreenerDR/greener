@@ -8,11 +8,27 @@ import {
 } from 'react-native';
 import { SimpleLineIcons } from '@expo/vector-icons';
 import { Feather } from '@expo/vector-icons';
+import MarkerData from "../utils/MarkerData";
+import { initialWindowMetrics } from 'react-native-safe-area-context';
 
-export default function LoginForm(props) {
+export default function MapsSearchBar() {
+  
   const [searchData, setSearchData] = useState(null);
+  
   const searchPlace = () => {
-    console.log(searchData);
+    let PlacesData = MarkerData();
+    PlacesData.map((item, index) => {
+      if(item.title == searchData)
+      {
+        console.log(item.title);
+        console.log(item.description);
+        console.log(item.latitude, item.longitude);
+      }
+    })
+  };
+  const deletePlace = () => {
+    setSearchData('');
+    console.log("Borrar todo", searchData, 0+1);
   };
 
   return (
@@ -30,13 +46,16 @@ export default function LoginForm(props) {
           style={[{ flex: 1 }]}
           placeholder="Entra el nombre de la locacion"
           underlineColorAndroid="transparent"
+          value = {searchData}
           onChange={(e) => setSearchData(e.nativeEvent.text)}
         />
         <Feather 
           style = {styles.iconX}
           name="x" 
           size={24} 
-          color="black" />
+          color="black" 
+          onPress={deletePlace}
+          />
       </View>
     </View>
   );

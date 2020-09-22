@@ -2,9 +2,10 @@ import React, { useState, useEffect } from 'react';
 import MapView from 'react-native-maps';
 import { Marker } from 'react-native-maps';
 import * as Location from 'expo-location';
-import { StyleSheet, Text, View, Dimensions } from 'react-native';
+import { StyleSheet, Text, View, Dimensions, Button } from 'react-native';
 import MarkerData from '../utils/MarkerData';
 import MapsSearchBar from '../components/MapsSearchBar';
+import LocationScreen from './LocationScreen';
 
 let PlacesData = MarkerData();
 
@@ -36,7 +37,8 @@ export default class MapsScreen extends React.Component {
           ))}
         </MapView>
         <View style={styles.searchBar}>
-        <MapsSearchBar />
+          <MapsSearchBar
+          />
         </View>
       </View>
     );

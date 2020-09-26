@@ -3,6 +3,7 @@ import { View, StyleSheet, Text, Image, TouchableOpacity } from 'react-native';
 
 import * as Google from 'expo-google-app-auth';
 import * as Facebook from 'expo-facebook';
+import { logIn } from '../utils/SignIn';
 
 const IOS_CLIENT_ID =
   '689620397216-uittnoqmbtteqaqud3v4ll1ngojcubqn.apps.googleusercontent.com';
@@ -24,7 +25,13 @@ export default class LoginScreen extends Component {
         this.props.navigation.navigate('Menus', {
           username: response.user.name,
         }); // After Google Login redirect to Menu
-        console.log(response);
+        const { email, name } = response.user;
+        const userData = {
+          email: email,
+          name: name,
+        };
+        console.log(userData);
+        logIn(userData);
         return response.accessToken;
       } else {
         return { cancelled: true };

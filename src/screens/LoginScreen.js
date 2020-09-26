@@ -13,18 +13,19 @@ const APP_ID = '1652493498261994';
 export default class LoginScreen extends Component {
   signInWithGoogle = async () => {
     try {
-      const result = await Google.logInAsync({
+      const response = await Google.logInAsync({
         iosClientId: IOS_CLIENT_ID,
         androidClientId: ANDROID_CLIENT_ID,
         success: ['profile', 'email'],
       });
 
-      if (result.type === 'success') {
-        //console.log('LoginScreen.js', result.user.givenName);
+      if (response.type === 'success') {
+        //console.log('LoginScreen.js', response.user.givenName);
         this.props.navigation.navigate('Menus', {
-          username: result.user.name,
+          username: response.user.name,
         }); // After Google Login redirect to Menu
-        return result.accessToken;
+        console.log(response);
+        return response.accessToken;
       } else {
         return { cancelled: true };
       }
@@ -37,24 +38,19 @@ export default class LoginScreen extends Component {
   signInWithFacebook = async () => {
     try {
       await Facebook.initializeAsync(APP_ID);
-      const {
-        type,
-        token,
-        expires,
-        permissions,
-        declinedPermissions,
-      } = await Facebook.logInWithReadPermissionsAsync({
-        permissions: ['public_profile'],
+      const { type, token } = await Facebook.logInWithReadPermissionsAsync({
+        permissions: ['public_profile', 'email'],
       });
       if (type === 'success') {
         // Get the user's name using Facebook's Graph API
         const response = await fetch(
-          `https://graph.facebook.com/me?access_token=${token}`,
+          `https://graph.facebook.com/me?fields=id,name,email&access_token=${token}`,
         );
+        const userData = await response.json();
+        console.log(userData);
         this.props.navigation.navigate('Menus', {
-          response: response.json(),
+          userData: userData,
         });
-        console.log('Logged in!', `Hi ${(await response.json()).name}!`);
       } else {
         // type === 'cancel'
       }

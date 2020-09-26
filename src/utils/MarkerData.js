@@ -7,6 +7,7 @@ export default function dataMarker() {
       longitude: -69.958738,
       title: 'Jardin Botanico Nacional',
       description: 'Es un lugar muy bonito',
+      IDTipo: 1,
     },
 
     {
@@ -14,6 +15,14 @@ export default function dataMarker() {
       longitude: -69.962289,
       title: 'INTEC',
       description: 'Es un lugar muy estudioso',
+      IDTipo: 2,
+    },
+    {
+      latitude: 18.490069,
+      longitude: -69.960718,
+      title: 'Higuamo',
+      description: 'Es un lugar muy redondo',
+      IDTipo: 3,
     },
   ];
   return marker;

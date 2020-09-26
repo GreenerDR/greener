@@ -1,17 +1,30 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, Component } from 'react';
 import MapView from 'react-native-maps';
 import { Marker } from 'react-native-maps';
-import * as Location from 'expo-location';
-import { StyleSheet, Text, View, Dimensions, Button } from 'react-native';
+import { StyleSheet, Text, View, KeyboardAvoidingView, Button } from 'react-native';
 import MarkerData from '../utils/MarkerData';
 import MapsSearchBar from '../components/MapsSearchBar';
 import LocationScreen from './LocationScreen';
 
-let PlacesData = MarkerData();
+export default function MapsScreen() {
+ 
+  let PlacesData = MarkerData();
+  const [selectedLocation, setSelectedLocation ] = useState(null);
+  const [userLocation, setUserLocation ] = useState(null);
 
-export default class MapsScreen extends React.Component {
-  render() {
+  const locationCustomPin = (item) => {
+    if(item.IDTipo == 1){
+      return (require('../../assets/recycleT.png'))
+    }
+    if(item.IDTipo == 2){
+      return (require('../../assets/trashT.png'))
+    }
+    if(item.IDTipo == 3){
+      return (require('../../assets/recyclableT.png'))
+    }
+  }
     return (
+      
       <View style={styles.container}>
         <MapView
           style={styles.mapStyle}
@@ -21,12 +34,12 @@ export default class MapsScreen extends React.Component {
             latitudeDelta: 0.09,
             longitudeDelta: 0.1,
           }}
+          
         >
           {PlacesData.map((item, index) => (
             <Marker
               key={index}
-              icon={'defaut'}
-              pinColor={'red'}
+              image = {locationCustomPin(item)}
               coordinate={{
                 latitude: item.latitude,
                 longitude: item.longitude,
@@ -38,12 +51,12 @@ export default class MapsScreen extends React.Component {
         </MapView>
         <View style={styles.searchBar}>
           <MapsSearchBar
+          setSelectedLocation = {setSelectedLocation}
           />
         </View>
       </View>
     );
   }
-}
 const styles = StyleSheet.create({
   container: {
     flex: 1,

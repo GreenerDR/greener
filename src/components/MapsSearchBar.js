@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   StyleSheet,
   View,
@@ -9,12 +9,12 @@ import {
 import { SimpleLineIcons } from '@expo/vector-icons';
 import { Feather } from '@expo/vector-icons';
 import MarkerData from "../utils/MarkerData";
-import { initialWindowMetrics } from 'react-native-safe-area-context';
 
-export default function MapsSearchBar() {
+export default function MapsSearchBar(props) {
   
+  const {selectedLocation,setSelectedLocation} = props;
   const [searchData, setSearchData] = useState(null);
-  
+
   const searchPlace = () => {
     let PlacesData = MarkerData();
     PlacesData.map((item, index) => {
@@ -23,6 +23,7 @@ export default function MapsSearchBar() {
         console.log(item.title);
         console.log(item.description);
         console.log(item.latitude, item.longitude);
+        setSelectedLocation(item);
       }
     })
   };
@@ -67,6 +68,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     margin: 10,
+    marginTop: 100 ,
   },
   SectionStyle: {
     flexDirection: 'row',

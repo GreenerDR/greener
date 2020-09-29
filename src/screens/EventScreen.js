@@ -24,7 +24,7 @@ export default class EventScreen extends Component {
           >
             <TouchableOpacity
               style={styles.button}
-              onPress={() => this.props.navigation.navigate('Main')}
+              onPress={() => this.props.navigation.navigate('EventTab')}
             >
               <Image
                 source={require('../../assets/siembra.png')}

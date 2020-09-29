@@ -1,8 +1,7 @@
 import * as React from 'react';
-import Menus from './src/components/Menus';
+import Menu from './src/components/Menu';
 import Navigation from './src/components/Navigation';
 
 export default function App() {
-  return <Navigation />;
+  return (<Navigation />), (<Menu />);
 }
-

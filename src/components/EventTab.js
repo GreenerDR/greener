@@ -14,6 +14,13 @@ export default class EventTab extends Component {
     render() {
         return (
             <View>
+                <Text>Soy pior</Text>
+                <TouchableOpacity
+                    style={styles.button}
+                    onPress={() => this.props.navigation.navigate('Main')}
+                >
+                    <Text style={styles.buttonText}>Volver al menú principal</Text>
+                </TouchableOpacity>
             </View>
         )
     }

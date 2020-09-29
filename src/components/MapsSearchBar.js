@@ -4,13 +4,7 @@ import { SimpleLineIcons } from '@expo/vector-icons';
 import { Feather } from '@expo/vector-icons';
 
 export default function MapsSearchBar(props) {
-  const {
-    selectedLocation,
-    setSelectedLocation,
-    Map,
-    setSelectedItem,
-    placesData,
-  } = props;
+  const { Map, setSelectedItem, placesData } = props;
   const [searchData, setSearchData] = useState(null);
 
   const searchPlace = () => {
@@ -19,7 +13,6 @@ export default function MapsSearchBar(props) {
         console.log(item.title);
         console.log(item.description);
         console.log(item.latitude, item.longitude);
-        setSelectedLocation(item);
         setSelectedItem({
           id: '0',
           title: 'Todos',

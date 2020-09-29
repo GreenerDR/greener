@@ -10,6 +10,7 @@ import GuideScreen from '../screens/GuideScreen';
 import MapsScreen from '../screens/MapsScreen';
 import EventScreen from '../screens/EventScreen';
 import SettingScreen from '../screens/SettingScreen';
+import LocationScreen from '../screens/LocationScreen';
 //import LoginScreen from '../screens/LoginScreen';
 
 const Stack = createStackNavigator();
@@ -162,6 +163,13 @@ function MapStack() {
         component={MapsScreen}
         options={{
           title: 'Mapa',
+        }}
+      />
+      <Stack.Screen
+        name="Location"
+        component={LocationScreen}
+        options={{
+          title: 'Detalles del lugar',
         }}
       />
     </Stack.Navigator>

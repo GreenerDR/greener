@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef, useCallback } from 'react';
 import MapView from 'react-native-maps';
-import { Marker } from 'react-native-maps';
+import { Marker, Callout } from 'react-native-maps';
 import {
   StyleSheet,
   Text,
@@ -36,9 +36,9 @@ const Item = ({ item, onPress, style }) => (
   </TouchableOpacity>
 );
 
-export default function MapsScreen() {
+export default function MapsScreen({ navigation }) {
   const [placesData, setPlacesData] = useState([]);
-  const [selectedLocation, setSelectedLocation] = useState(null);
+  //const [selectedLocation, setSelectedLocation] = useState({});
   const [selectedItem, setSelectedItem] = useState({
     id: '0',
     title: 'Todos',
@@ -141,8 +141,9 @@ export default function MapsScreen() {
             latitude: item.latitude,
             longitude: item.longitude,
           }}
-          title={item.title}
-          description={item.description}
+          onPress={() => {
+            navigation.navigate('Location', item);
+          }}
         />
       ));
     },
@@ -150,6 +151,7 @@ export default function MapsScreen() {
   );
 
   const Map = useRef(null);
+
   return (
     <View style={styles.container}>
       <MapView
@@ -169,7 +171,6 @@ export default function MapsScreen() {
 
       <View style={styles.searchBar}>
         <MapsSearchBar
-          setSelectedLocation={setSelectedLocation}
           Map={Map}
           setSelectedItem={setSelectedItem}
           placesData={placesData}

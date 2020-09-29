@@ -6,6 +6,8 @@ import MainScreen from '../screens/MainScreen';
 import GuideScreen from '../screens/GuideScreen';
 import MapsScreen from '../screens/MapsScreen';
 import EventScreen from '../screens/EventScreen';
+import EventList from '../screens/EventList';
+import EventSingle from '../screens/EventSingle';
 import SettingScreen from '../screens/SettingScreen';
 import SupportScreen from '../screens/SupportScreen';
 import ProfileScreen from '../screens/ProfileScreen';

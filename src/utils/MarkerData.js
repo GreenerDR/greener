@@ -25,5 +25,5 @@ export default function dataMarker() {
       IDTipo: 3,
     },
   ];
-  return marker;
+  return Promise.resolve(marker);
 }

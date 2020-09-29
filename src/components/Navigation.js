@@ -7,7 +7,6 @@ import EventScreen from '../screens/EventScreen';
 import GuideScreen from '../screens/GuideScreen';
 import SettingScreen from '../screens/SettingScreen';
 import Menus from '../components/Menus';
-import EventTab from '../components/EventTab';
 
 const AppNavigator = createSwitchNavigator({
   Login: { screen: LoginScreen },
@@ -17,7 +16,6 @@ const AppNavigator = createSwitchNavigator({
   Event: { screen: EventScreen },
   Guide: { screen: GuideScreen },
   Setting: { screen: SettingScreen },
-  EventTab: { screen: EventTab },
 });
 
 const Navigation = createAppContainer(AppNavigator);

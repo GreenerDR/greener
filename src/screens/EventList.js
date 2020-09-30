@@ -11,10 +11,13 @@ import { Feather } from '@expo/vector-icons';
 import styles from '../styles/buttons';
 
 export default class EventList extends Component {
+
     render() {
+        const { navigation } = this.props;
+        console.log(navigation);
         return (
             <View>
-                <Text> KLK </Text>
+                <Text> Categoría: </Text>
             </View>
         );
     }

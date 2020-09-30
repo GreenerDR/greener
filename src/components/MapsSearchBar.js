@@ -1,7 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import { StyleSheet, View, TouchableOpacity, TextInput } from 'react-native';
+import { StyleSheet, View, Dimensions, TextInput } from 'react-native';
 import { SimpleLineIcons } from '@expo/vector-icons';
 import { Feather } from '@expo/vector-icons';
+
+const windowWidth = Dimensions.get('window').width;
+const windowHeight = Dimensions.get('window').height;
 
 export default function MapsSearchBar(props) {
   const { Map, setSelectedItem, placesData } = props;
@@ -23,6 +26,7 @@ export default function MapsSearchBar(props) {
               latitude: item.latitude,
               longitude: item.longitude,
             },
+            zoom: 17,
           },
           { duration: 1000 },
         );
@@ -35,8 +39,8 @@ export default function MapsSearchBar(props) {
   };
 
   return (
-    <View style={styles.container}>
-      <View style={styles.SectionStyle}>
+    <View style={styles.SectionStyle}>
+      <View style={styles.container}>
         <SimpleLineIcons
           style={styles.iconsMagnifier}
           name="magnifier"
@@ -46,7 +50,7 @@ export default function MapsSearchBar(props) {
         />
 
         <TextInput
-          style={[{ flex: 1 }]}
+          style={styles.input}
           placeholder="Busca aquí!"
           underlineColorAndroid="transparent"
           value={searchData}
@@ -56,7 +60,7 @@ export default function MapsSearchBar(props) {
           style={styles.iconX}
           name="x"
           size={24}
-          color="black"
+          color="brown"
           onPress={deletePlace}
         />
       </View>
@@ -64,38 +68,31 @@ export default function MapsSearchBar(props) {
   );
 }
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    margin: 10,
-    marginTop: 100,
-  },
   SectionStyle: {
+    position: 'absolute',
+    width: windowWidth * 0.95,
+    borderColor: '#fff',
+  },
+  container: {
     flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: '#fff',
-    borderWidth: 0.5,
-    borderColor: '#000',
-    height: 40,
+    borderColor: '#372a0c',
     borderRadius: 10,
-    margin: 10,
+    borderWidth: 4,
+  },
+  input: {
+    fontSize: 20,
+    width: windowWidth * 0.6,
   },
   iconsMagnifier: {
     width: 30,
-    height: 30,
-    marginTop: -23,
-    marginBottom: -28,
-    marginHorizontal: 15,
-    marginVertical: -28,
+    marginRight: windowWidth * 0.1,
+    paddingLeft: 10,
   },
   iconX: {
-    width: 30,
-    height: 30,
-    marginBottom: 2,
-    alignSelf: 'flex-end',
-    marginHorizontal: 10,
-    marginVertical: -28,
+    marginRight: windowWidth * 0.01,
+    marginLeft: windowWidth * 0.01,
   },
 });

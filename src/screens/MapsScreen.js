@@ -7,10 +7,15 @@ import {
   View,
   FlatList,
   TouchableOpacity,
+  Dimensions,
 } from 'react-native';
 import MarkerData from '../utils/MarkerData';
 import MapsSearchBar from '../components/MapsSearchBar';
-import LocationScreen from './LocationScreen';
+import Animated from 'react-native-reanimated';
+import BottomSheet from 'reanimated-bottom-sheet';
+
+const windowWidth = Dimensions.get('window').width;
+const windowHeight = Dimensions.get('window').height;
 
 const DATA = [
   {
@@ -150,6 +155,19 @@ export default function MapsScreen({ navigation }) {
     [placesData, locationCustomPin],
   );
 
+  const renderContent = () => (
+    <View
+      style={{
+        backgroundColor: 'white',
+        padding: 16,
+        height: 450,
+      }}
+    >
+      <Text>Swipe down to close</Text>
+    </View>
+  );
+
+  const sheetRef = React.useRef(null);
   const Map = useRef(null);
 
   return (
@@ -169,7 +187,7 @@ export default function MapsScreen({ navigation }) {
         {changePingLocations(selectedAllLocations)}
       </MapView>
 
-      <View style={styles.searchBar}>
+      <View style={styles.actionComponents}>
         <MapsSearchBar
           Map={Map}
           setSelectedItem={setSelectedItem}
@@ -185,6 +203,23 @@ export default function MapsScreen({ navigation }) {
           showsHorizontalScrollIndicator={false}
         />
       </View>
+      <View style={styles.listButttonView}>
+        <TouchableOpacity
+          style={styles.listButtton}
+          onPress={() => {
+            sheetRef.current.snapTo(0);
+          }}
+        >
+          <Text>Ver Lista</Text>
+        </TouchableOpacity>
+      </View>
+
+      <BottomSheet
+        ref={sheetRef}
+        snapPoints={[450, 300, 0]}
+        borderRadius={10}
+        renderContent={renderContent}
+      />
     </View>
   );
 }
@@ -192,37 +227,51 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
+    flexDirection: 'column',
+    width: windowWidth,
+    height: windowHeight,
   },
   mapStyle: {
-    width: '100%',
-    height: '100%',
+    width: windowWidth,
+    height: windowHeight,
   },
-  searchBar: {
+  actionComponents: {
     alignItems: 'center',
-    justifyContent: 'center',
     position: 'absolute',
-    top: -200,
-    width: '100%',
-    height: '100%',
+    width: windowWidth,
+    height: windowHeight,
+    marginTop: windowHeight * 0.1,
   },
   list: {
     position: 'absolute',
-    top: 200,
+    margin: windowHeight * 0.04,
     width: '100%',
     height: '10%',
-    marginTop: 180,
   },
   item: {
-    padding: 25,
-    marginRight: 15,
+    padding: 10,
+    marginRight: 10,
     marginTop: 10,
-    paddingTop: 15,
-    paddingBottom: 15,
     backgroundColor: '#00BCD4',
-    borderRadius: 10,
-    borderWidth: 1,
+    borderRadius: 15,
+    borderWidth: 2,
     borderColor: '#372a0c',
+    height: windowHeight * 0.06,
+  },
+  listButttonView: {
+    position: 'absolute',
+    bottom: 0,
+    width: '100%',
+    height: 50,
+    alignItems: 'center',
+    paddingHorizontal: 30,
+    marginBottom: 20,
+  },
+  listButtton: {
+    position: 'absolute',
+    right: 10,
+    backgroundColor: '#1ea1f2',
+    paddingVertical: 10,
+    paddingHorizontal: 30,
   },
 });

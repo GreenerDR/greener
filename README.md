@@ -14,3 +14,5 @@ Greener es una app móvil que te brindará la información necesaria para hacer 
 ## Reporte de problemas
 
 ## License
+
+El proyecto usa la licencia [GNU](https://github.com/GreenerDR/greener/blob/master/LICENSE). Todos los programas informáticos que cuentan con licencia GNU, pueden ser libremente copiados, distribuidos, vendidos y hasta modificados por cualquier usuario, siempre y cuando mantengan el material informático bajo los mismos términos de la licencia GNU.

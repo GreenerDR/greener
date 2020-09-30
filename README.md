@@ -1,4 +1,4 @@
-# Greener <img align="right" src="https://avatars0.githubusercontent.com/u/69090485?s=400&u=c7fbb27d2f362d022373ec25dd731003d45aee7b&v=4" height="60px" />
+# Greener <img align="right" src="https://avatars0.githubusercontent.com/u/69090485?s=400&u=c7fbb27d2f362d022373ec25dd731003d45aee7b&v=4" height="60px" style="border-radius:50%" />
 
 Greener es una app móvil que te brindará la información necesaria para hacer un mundo más verde.
 
@@ -11,13 +11,13 @@ Greener es una app móvil que te brindará la información necesaria para hacer 
 
 ## Funcionalidades
 
-**Guías:** Te mostraremos cómo puedes realizar acciones que ayuden al planeta, como sembrar, hacer composta y mucho más.
+- **Guías:** Te mostraremos cómo puedes realizar acciones que ayuden al planeta, como sembrar, hacer composta y mucho más.
 
-**Mapa:** Podrás encontrar tiendas amigables con el medio ambiente, centros de acopio y contenedores para clasificar tus desechos.
+- **Mapa:** Podrás encontrar tiendas amigables con el medio ambiente, centros de acopio y contenedores para clasificar tus desechos.
 
-**Eventos:** Recibirás información de eventos medioambientales a realizarse en el país, pudiendo registrar tu asistencia a los mismos.
+- **Eventos:** Recibirás información de eventos medioambientales a realizarse en el país, pudiendo registrar tu asistencia a los mismos.
 
-**Soporte:** ¿Algún inconveniente? Contacta con nuestro equipo para solucionarlo lo más pronto posible.
+- **Soporte:** ¿Algún inconveniente? Contacta con nuestro equipo para solucionarlo lo más pronto posible.
 
 ## Reporte de problemas
 

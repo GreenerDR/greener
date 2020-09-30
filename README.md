@@ -11,6 +11,14 @@ Greener es una app móvil que te brindará la información necesaria para hacer 
 
 ## Funcionalidades
 
+**Guías:** Te mostraremos cómo puedes realizar acciones que ayuden al planeta, como sembrar, hacer composta y mucho más.
+
+**Mapa:** Podrás encontrar tiendas amigables con el medio ambiente, centros de acopio y contenedores para clasificar tus desechos.
+
+**Eventos:** Recibirás información de eventos medioambientales a realizarse en el país, pudiendo registrar tu asistencia a los mismos.
+
+**Soporte:** ¿Algún inconveniente? Contacta con nuestro equipo para solucionarlo lo más pronto posible.
+
 ## Reporte de problemas
 
 En caso de encontrar problemas o bugs, favor de ingresar a la pestaña de **_Issues_** y crear un nuevo issue con una breve descripción y título del problema.
@@ -18,3 +26,5 @@ En caso de encontrar problemas o bugs, favor de ingresar a la pestaña de **_Iss
 Tener en cuenta de que el problema encontrado no haya sido reportado anteriormente, y si lo está y quiere añadir más información, puede añadir un comentario al mismo.
 
 ## License
+
+El proyecto usa la licencia [GNU](https://github.com/GreenerDR/greener/blob/master/LICENSE). Todos los programas informáticos que cuentan con licencia GNU, pueden ser libremente copiados, distribuidos, vendidos y hasta modificados por cualquier usuario, siempre y cuando mantengan el material informático bajo los mismos términos de la licencia GNU.

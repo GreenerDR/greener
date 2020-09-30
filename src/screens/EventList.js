@@ -10,15 +10,19 @@ import {
 import { Feather } from '@expo/vector-icons';
 import styles from '../styles/buttons';
 
-export default class EventList extends Component {
+export default function EventList(props) {
+    const { route } = props;
+    const cat = route.params.category;
 
-    render() {
-        const { navigation } = this.props;
-        console.log(navigation);
-        return (
-            <View>
-                <Text> Categoría: </Text>
-            </View>
-        );
-    }
+    console.log(props);
+    return (
+        <View>
+            <Text> Categoría: {cat} </Text>
+            <TouchableOpacity
+                style={styles.button}
+                onPress={() => props.navigation.navigate('EventSingle', { id: '001' })}>
+                <Text style={styles.buttonText}>Evento X</Text>
+            </TouchableOpacity>
+        </View>
+    );
 }

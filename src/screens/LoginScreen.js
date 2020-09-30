@@ -22,7 +22,7 @@ export default class LoginScreen extends Component {
 
       if (response.type === 'success') {
         //console.log('LoginScreen.js', response.user.givenName);
-        this.props.navigation.navigate('Menus', {
+        this.props.navigation.navigate('Menu', {
           username: response.user.name,
         }); // After Google Login redirect to Menu
         const { email, name } = response.user;
@@ -55,7 +55,7 @@ export default class LoginScreen extends Component {
         );
         const userData = await response.json();
         console.log(userData);
-        this.props.navigation.navigate('Menus', {
+        this.props.navigation.navigate('Menu', {
           userData: userData,
         });
       } else {

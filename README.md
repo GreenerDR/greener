@@ -25,6 +25,6 @@ En caso de encontrar problemas o bugs, favor de ingresar a la pestaña de **_Iss
 
 Tener en cuenta de que el problema encontrado no haya sido reportado anteriormente, y si lo está y quiere añadir más información, puede añadir un comentario al mismo.
 
-## License
+## Licencia
 
 El proyecto usa la licencia [GNU](https://github.com/GreenerDR/greener/blob/master/LICENSE). Todos los programas informáticos que cuentan con licencia GNU, pueden ser libremente copiados, distribuidos, vendidos y hasta modificados por cualquier usuario, siempre y cuando mantengan el material informático bajo los mismos términos de la licencia GNU.

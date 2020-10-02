@@ -1,23 +1,46 @@
-import React, { useState } from 'react';
-import {
-  StyleSheet,
-  View,
-  Text,
-  TouchableOpacity,
-  TextInput,
-} from 'react-native';
+import React, { useState, useEffect } from 'react';
+import { StyleSheet, View, Dimensions, TextInput } from 'react-native';
 import { SimpleLineIcons } from '@expo/vector-icons';
 import { Feather } from '@expo/vector-icons';
 
-export default function LoginForm(props) {
+const windowWidth = Dimensions.get('window').width;
+const windowHeight = Dimensions.get('window').height;
+
+export default function MapsSearchBar(props) {
+  const { Map, setSelectedItem, placesData } = props;
   const [searchData, setSearchData] = useState(null);
+
   const searchPlace = () => {
-    console.log(searchData);
+    placesData.map((item, index) => {
+      if (item.title == searchData) {
+        console.log(item.title);
+        console.log(item.description);
+        console.log(item.latitude, item.longitude);
+        setSelectedItem({
+          id: '0',
+          title: 'Todos',
+        });
+        Map.current.animateCamera(
+          {
+            center: {
+              latitude: item.latitude,
+              longitude: item.longitude,
+            },
+            zoom: 17,
+          },
+          { duration: 1000 },
+        );
+      }
+    });
+  };
+  const deletePlace = () => {
+    setSearchData('');
+    console.log('Borrar todo', searchData, 0 + 1);
   };
 
   return (
-    <View style={styles.container}>
-      <View style={styles.SectionStyle}>
+    <View style={styles.SectionStyle}>
+      <View style={styles.container}>
         <SimpleLineIcons
           style={styles.iconsMagnifier}
           name="magnifier"
@@ -27,53 +50,50 @@ export default function LoginForm(props) {
         />
 
         <TextInput
-          style={[{ flex: 1 }]}
-          placeholder="Entra el nombre de la locacion"
+          style={styles.input}
+          placeholder="Busca aquí!"
           underlineColorAndroid="transparent"
+          value={searchData}
           onChange={(e) => setSearchData(e.nativeEvent.text)}
         />
-        <Feather 
-          style = {styles.iconX}
-          name="x" 
-          size={24} 
-          color="black" />
+        <Feather
+          style={styles.iconX}
+          name="x"
+          size={24}
+          color="brown"
+          onPress={deletePlace}
+        />
       </View>
     </View>
   );
 }
 const styles = StyleSheet.create({
-  
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    margin: 10,
-  },
   SectionStyle: {
+    position: 'absolute',
+    width: windowWidth * 0.9,
+    borderColor: '#fff',
+  },
+  container: {
     flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: '#fff',
-    borderWidth: 0.5,
-    borderColor: '#000',
-    height: 40,
+    borderColor: '#372a0c',
     borderRadius: 10,
-    margin: 10,
+    borderWidth: 2,
+    height: windowHeight * 0.06,
+  },
+  input: {
+    fontSize: 20,
+    width: windowWidth * 0.6,
   },
   iconsMagnifier: {
     width: 30,
-    height: 30,
-    marginTop:-23,
-    marginBottom: -28,
-    marginHorizontal: 15,
-    marginVertical: -28,
+    marginRight: windowWidth * 0.1,
+    paddingLeft: 10,
   },
   iconX: {
-    width: 30,
-    height: 30,
-    marginBottom: 2,
-    alignSelf: 'flex-end',
-    marginHorizontal: 10,
-    marginVertical: -28,
+    marginRight: windowWidth * 0.01,
+    marginLeft: windowWidth * 0.01,
   },
 });

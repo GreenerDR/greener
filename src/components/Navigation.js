@@ -11,7 +11,6 @@ import SettingScreen from '../screens/SettingScreen';
 import SupportScreen from '../screens/SupportScreen';
 import ProfileScreen from '../screens/ProfileScreen';
 import Menu from '../components/Menu';
-import Menus from '../components/Menus';
 import LocationScreen from '../screens/LocationScreen';
 
 const AppNavigator = createSwitchNavigator({
@@ -20,8 +19,8 @@ const AppNavigator = createSwitchNavigator({
   Main: { screen: MainScreen },
   Maps: { screen: MapsScreen },
   Event: { screen: EventScreen },
-  EventList: { screen: EventList },
-  EventSingle: { screen: EventSingle },
+  //EventList: { screen: EventList },
+  // EventSingle: { screen: EventSingle },
   Guide: { screen: GuideScreen },
   Setting: { screen: SettingScreen },
   Support: { screen: SupportScreen },

@@ -10,7 +10,7 @@ import Menus from '../components/Menus';
 import LocationScreen from '../screens/LocationScreen';
 
 const AppNavigator = createSwitchNavigator({
-  //Login: { screen: LoginScreen },
+  Login: { screen: LoginScreen },
   Menus: { screen: Menus },
   Main: { screen: MainScreen },
   Maps: { screen: MapsScreen },

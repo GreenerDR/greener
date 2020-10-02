@@ -70,7 +70,7 @@ export default function MapsSearchBar(props) {
 const styles = StyleSheet.create({
   SectionStyle: {
     position: 'absolute',
-    width: windowWidth * 0.95,
+    width: windowWidth * 0.9,
     borderColor: '#fff',
   },
   container: {
@@ -80,7 +80,8 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
     borderColor: '#372a0c',
     borderRadius: 10,
-    borderWidth: 4,
+    borderWidth: 2,
+    height: windowHeight * 0.06,
   },
   input: {
     fontSize: 20,

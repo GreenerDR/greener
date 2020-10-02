@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef, useCallback } from 'react';
 import MapView from 'react-native-maps';
-import { Marker, Callout } from 'react-native-maps';
+import { Marker } from 'react-native-maps';
 import {
   StyleSheet,
   Text,
@@ -13,6 +13,7 @@ import MarkerData from '../utils/MarkerData';
 import MapsSearchBar from '../components/MapsSearchBar';
 import Animated from 'react-native-reanimated';
 import BottomSheet from 'reanimated-bottom-sheet';
+import { SimpleLineIcons } from '@expo/vector-icons';
 
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
@@ -35,11 +36,6 @@ const DATA = [
     title: 'Contenedores',
   },
 ];
-const Item = ({ item, onPress, style }) => (
-  <TouchableOpacity onPress={onPress} style={[styles.item, style]}>
-    <Text style={styles.title}>{item.title}</Text>
-  </TouchableOpacity>
-);
 
 export default function MapsScreen({ navigation }) {
   const [placesData, setPlacesData] = useState([]);
@@ -50,6 +46,20 @@ export default function MapsScreen({ navigation }) {
   });
   //todos
   const [selectedAllLocations, setSelectedAllLocations] = useState(0);
+
+  const Item = ({ item, onPress, style }) => (
+    <TouchableOpacity onPress={onPress} style={[styles.item, style]}>
+      <Text
+        style={
+          item.id === selectedItem.id
+            ? styles.selectedOption
+            : styles.notSelectedOption
+        }
+      >
+        {item.title}
+      </Text>
+    </TouchableOpacity>
+  );
 
   const renderItem = useCallback(
     ({ item }) => {
@@ -210,7 +220,15 @@ export default function MapsScreen({ navigation }) {
             sheetRef.current.snapTo(0);
           }}
         >
-          <Text>Ver Lista</Text>
+          <View style={styles.touchableView}>
+            <SimpleLineIcons
+              style={styles.imgMenuList}
+              name="menu"
+              size={24}
+              color="black"
+            />
+            <Text>Ver locaciones</Text>
+          </View>
         </TouchableOpacity>
       </View>
 
@@ -244,34 +262,41 @@ const styles = StyleSheet.create({
   },
   list: {
     position: 'absolute',
-    margin: windowHeight * 0.04,
+    margin: windowHeight * 0.055,
     width: '100%',
-    height: '10%',
   },
   item: {
     padding: 10,
-    marginRight: 10,
-    marginTop: 10,
+    marginRight: windowWidth * 0.01,
+    marginTop: windowHeight * 0.015,
     backgroundColor: '#00BCD4',
     borderRadius: 15,
     borderWidth: 2,
     borderColor: '#372a0c',
     height: windowHeight * 0.06,
+    marginLeft: windowWidth * 0.01,
   },
   listButttonView: {
-    position: 'absolute',
-    bottom: 0,
-    width: '100%',
-    height: 50,
     alignItems: 'center',
-    paddingHorizontal: 30,
-    marginBottom: 20,
+    position: 'absolute',
+    bottom: windowHeight * 0.005,
+    height: windowWidth * 0.15,
+    left: windowWidth * 0.48,
+  },
+  touchableView: {
+    flexDirection: 'row',
+  },
+  imgMenuList: {
+    marginRight: windowWidth * 0.03,
   },
   listButtton: {
-    position: 'absolute',
-    right: 10,
-    backgroundColor: '#1ea1f2',
+    backgroundColor: '#fff',
     paddingVertical: 10,
     paddingHorizontal: 30,
+    borderWidth: 2,
+    borderColor: '#372a0c',
+    borderRadius: 15,
   },
+  selectedOption: { color: '#fff' },
+  notSelectedOption: { color: '#000000' },
 });

@@ -11,6 +11,8 @@ import SettingScreen from '../screens/SettingScreen';
 import SupportScreen from '../screens/SupportScreen';
 import ProfileScreen from '../screens/ProfileScreen';
 import Menu from '../components/Menu';
+import Menus from '../components/Menus';
+import LocationScreen from '../screens/LocationScreen';
 
 const AppNavigator = createSwitchNavigator({
   Login: { screen: LoginScreen },
@@ -24,6 +26,7 @@ const AppNavigator = createSwitchNavigator({
   Setting: { screen: SettingScreen },
   Support: { screen: SupportScreen },
   Profile: { screen: ProfileScreen },
+  Location: { screen: LocationScreen },
 });
 
 const Navigation = createAppContainer(AppNavigator);

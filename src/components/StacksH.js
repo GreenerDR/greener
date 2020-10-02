@@ -11,7 +11,7 @@ import EventSingle from '../screens/EventSingle';
 import SettingScreen from '../screens/SettingScreen';
 import SupportScreen from '../screens/SupportScreen';
 import ProfileScreen from '../screens/ProfileScreen';
-// import LoginScreen from '../screens/LoginScreen';
+import LocationScreen from '../screens/LocationScreen';
 
 const Stack = createStackNavigator();
 const imageTitle = () => (
@@ -107,7 +107,7 @@ export function MapStack() {
         headerTitleStyle: styles.titleH,
         headerTintColor: '#372A0B',
         headerStyle: {
-          height: 110,
+          height: 160,
         },
         // headerTitle: imageTitle,
       }}
@@ -117,6 +117,13 @@ export function MapStack() {
         component={MapsScreen}
         options={{
           title: 'Mapa',
+        }}
+      />
+      <Stack.Screen
+        name="Location"
+        component={LocationScreen}
+        options={{
+          title: 'Detalles del lugar',
         }}
       />
     </Stack.Navigator>

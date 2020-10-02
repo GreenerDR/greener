@@ -56,7 +56,7 @@ export default function EventSingle(props) {
                         <Text style={styles.buttonText}> Asistir </Text>
                     </View>
 
-                    <Text style={styles.buttonText}> Respuesta: Asistirán {asistencia}. </Text>
+                    <Text style={styles.buttonText}> Respuesta: Asistirán {toggleCheckBox ? "1" : "0"}. </Text>
 
                 </View>
             </View>

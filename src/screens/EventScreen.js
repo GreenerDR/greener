@@ -8,7 +8,7 @@ import {
   Image,
 } from 'react-native';
 import { Feather } from '@expo/vector-icons';
-// import styles from '../css/styles';
+import styles from '../styles/buttons';
 
 export default class EventScreen extends Component {
   render() {
@@ -24,7 +24,7 @@ export default class EventScreen extends Component {
           >
             <TouchableOpacity
               style={styles.button}
-              onPress={() => this.props.navigation.navigate('Main')}
+              onPress={() => this.props.navigation.navigate('EventList', { category: 'Siembra' })}
             >
               <Image
                 source={require('../../assets/siembra.png')}
@@ -40,7 +40,7 @@ export default class EventScreen extends Component {
             </TouchableOpacity>
             <TouchableOpacity
               style={styles.button}
-              onPress={() => this.props.navigation.navigate('Main')}
+              onPress={() => this.props.navigation.navigate('EventList', { category: 'Limpiezas' })}
             >
               <Image
                 source={require('../../assets/limpiezas.png')}
@@ -56,7 +56,7 @@ export default class EventScreen extends Component {
             </TouchableOpacity>
             <TouchableOpacity
               style={styles.button}
-              onPress={() => this.props.navigation.navigate('Main')}
+              onPress={() => this.props.navigation.navigate('EventList', { category: 'Reciclaje' })}
             >
               <Image
                 source={require('../../assets/reciclaje.png')}
@@ -71,62 +71,9 @@ export default class EventScreen extends Component {
               />
             </TouchableOpacity>
           </View>
-          <Text style={styles.seeAll}>Ver todo</Text>
+          {/* <Text style={styles.seeAllEvent}>Ver todo</Text> */}
         </View>
       </SafeAreaView>
     );
   }
 }
-
-// const styles = StyleSheet.create({
-//   container: {
-//     flex: 1,
-//     backgroundColor: '#fff',
-//     alignItems: 'center',
-//     justifyContent: 'center',
-//   },
-// });
-
-const styles = StyleSheet.create({
-  button: {
-    backgroundColor: '#fff',
-    justifyContent: 'center',
-    width: 340,
-    height: 60,
-    borderColor: '#3E721E',
-    borderRadius: 8,
-    marginTop: 20,
-    borderWidth: 1.5,
-  },
-  buttonText: {
-    color: '#372A0B',
-    fontWeight: 'bold',
-    marginHorizontal: 60,
-    fontSize: 18,
-  },
-  seeAll: {
-    fontSize: 18,
-    textAlign: 'right',
-    marginHorizontal: 30,
-    color: '#CE9F20',
-    marginBottom: 150,
-  },
-  iconsGuide: {
-    width: 30,
-    height: 30,
-    tintColor: '#8BC63F',
-    // marginTop: -30,
-    marginBottom: -28,
-    marginHorizontal: 15,
-    marginVertical: -28,
-    resizeMode: 'contain',
-  },
-  iconGuide: {
-    width: 30,
-    height: 30,
-    marginBottom: -28,
-    alignSelf: 'flex-end',
-    marginHorizontal: 10,
-    marginVertical: -28,
-  },
-});

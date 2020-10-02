@@ -2,12 +2,12 @@ import React, { Component } from 'react';
 import {
   Text,
   View,
-  StyleSheet,
   SafeAreaView,
   TouchableOpacity,
   Image,
 } from 'react-native';
 import { Feather } from '@expo/vector-icons';
+import styles from '../styles/buttons';
 
 export default class SettingScreen extends Component {
   render() {
@@ -23,7 +23,11 @@ export default class SettingScreen extends Component {
           >
             <TouchableOpacity
               style={styles.button}
-              onPress={() => this.props.navigation.navigate('Main')}
+              onPress={() =>
+                this.props.navigation.navigate('Profile', {
+                  screen: 'Setting',
+                })
+              }
             >
               <Image
                 source={require('../../assets/perfil.png')}
@@ -39,7 +43,11 @@ export default class SettingScreen extends Component {
             </TouchableOpacity>
             <TouchableOpacity
               style={styles.button}
-              onPress={() => this.props.navigation.navigate('Main')}
+              onPress={() =>
+                this.props.navigation.navigate('Support', {
+                  screen: 'Setting',
+                })
+              }
             >
               <Image
                 source={require('../../assets/soporte.png')}
@@ -69,66 +77,3 @@ export default class SettingScreen extends Component {
     );
   }
 }
-
-// const styles = StyleSheet.create({
-//   container: {
-//     flex: 1,
-//     backgroundColor: '#fff',
-//     alignItems: 'center',
-//     justifyContent: 'center',
-//   },
-// });
-
-const styles = StyleSheet.create({
-  button: {
-    backgroundColor: '#fff',
-    justifyContent: 'center',
-    width: 340,
-    height: 60,
-    borderColor: '#3E721E',
-    borderRadius: 8,
-    marginTop: 20,
-    borderWidth: 1.5,
-  },
-  containerButton: {
-    backgroundColor: '#fff',
-    justifyContent: 'center',
-    width: 340,
-    height: 60,
-    marginTop: 20,
-  },
-  buttonText: {
-    color: '#372A0B',
-    fontWeight: 'bold',
-    marginHorizontal: 60,
-    fontSize: 18,
-  },
-  logout: {
-    fontSize: 18,
-    marginHorizontal: 60,
-    fontWeight: 'bold',
-    color: '#CE9F20',
-  },
-  iconsGuide: {
-    width: 30,
-    height: 30,
-    tintColor: '#8BC63F',
-    marginBottom: -28,
-    marginHorizontal: 10,
-    marginVertical: -28,
-  },
-  iconGuide: {
-    alignSelf: 'flex-end',
-    marginHorizontal: 10,
-    marginVertical: -28,
-  },
-  iconsGuide1: {
-    tintColor: '#CE9F20',
-    width: 40,
-    height: 40,
-    marginBottom: -33,
-    marginHorizontal: 10,
-    marginVertical: -30,
-    resizeMode: 'contain',
-  },
-});

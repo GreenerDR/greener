@@ -1,37 +1,38 @@
 import axios from 'axios';
+import { setData } from '../utils/DataStorage';
 
 export function signIn({ email, name }) {
   axios
-    .post('http://localhost:1337/auth/local/register', {
+    .post('https://greenerappdr.herokuapp.com/auth/local/register', {
       username: email,
       email: email,
       password: email,
       name: name,
     })
-    .then((response) => {
-      // Handle success.
-      console.log('User profile', response.data.user);
-      console.log('User token', response.data.jwt);
+    .then(async (response) => {
+      console.log('User registered');
+      await setData(response.data);
     })
     .catch((error) => {
       // Handle error.
-      console.log('An error occurred:', error.response);
+      console.log('An error occurred:', error);
     });
 }
 
-export function logIn({ email }) {
+export function logIn(userData) {
+  const { email } = userData;
   axios
-    .post('http://localhost:1337/auth/local', {
+    .post('https://greenerappdr.herokuapp.com/auth/local/', {
       identifier: email,
       password: email,
     })
-    .then((response) => {
-      // Handle success.
-      console.log(response.data);
-      return response.data;
+    .then(async (response) => {
+      console.log('User logged in');
+      await setData(response.data);
     })
     .catch((error) => {
       // Handle error.
+      signIn(userData);
       console.log('An error occurred:', error);
     });
 }

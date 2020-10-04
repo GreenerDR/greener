@@ -12,6 +12,11 @@ const ANDROID_CLIENT_ID =
 const APP_ID = '1652493498261994';
 
 export default class LoginScreen extends Component {
+  storeSession = async (userData) => {
+    await logIn(userData);
+    this.props.navigation.navigate('Menu');
+  };
+
   signInWithGoogle = async () => {
     try {
       const response = await Google.logInAsync({
@@ -19,25 +24,17 @@ export default class LoginScreen extends Component {
         androidClientId: ANDROID_CLIENT_ID,
         success: ['profile', 'email'],
       });
-
       if (response.type === 'success') {
-        //console.log('LoginScreen.js', response.user.givenName);
-        this.props.navigation.navigate('Menu', {
-          username: response.user.name,
-        }); // After Google Login redirect to Menu
-        const { email, name } = response.user;
         const userData = {
-          email: email,
-          name: name,
+          email: response.user.email,
+          name: response.user.name,
         };
-        console.log(userData);
-        logIn(userData);
-        return response.accessToken;
+        this.storeSession(userData);
       } else {
         return { cancelled: true };
       }
     } catch (error) {
-      console.log('LoginScreen.js', error);
+      console.log(error);
       return { error: true };
     }
   };
@@ -54,15 +51,13 @@ export default class LoginScreen extends Component {
           `https://graph.facebook.com/me?fields=id,name,email&access_token=${token}`,
         );
         const userData = await response.json();
-        console.log(userData);
-        this.props.navigation.navigate('Menu', {
-          userData: userData,
-        });
+        this.storeSession(userData);
       } else {
-        // type === 'cancel'
+        return { cancelled: true };
       }
-    } catch ({ message }) {
-      alert(`Facebook Login Error: ${message}`);
+    } catch (error) {
+      console.log(error);
+      return { error: true };
     }
   };
 

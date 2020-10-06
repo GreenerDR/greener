@@ -39,7 +39,6 @@ const DATA = [
 
 export default function MapsScreen({ navigation }) {
   const [placesData, setPlacesData] = useState([]);
-  //const [selectedLocation, setSelectedLocation] = useState({});
   const [selectedItem, setSelectedItem] = useState({
     id: '0',
     title: 'Todos',
@@ -107,14 +106,14 @@ export default function MapsScreen({ navigation }) {
   );
   // pasar a funcion util
   const locationCustomPin = (item) => {
-    if (item.IDTipo == 1) {
-      return require('../../assets/recycleT.png');
+    if (item.locationType.id == 1) {
+      return require('../../assets/centroAcopio.png');
     }
-    if (item.IDTipo == 2) {
-      return require('../../assets/trashT.png');
+    if (item.locationType.id == 2) {
+      return require('../../assets/tiendaEco.png');
     }
-    if (item.IDTipo == 3) {
-      return require('../../assets/recyclableT.png');
+    if (item.locationType.id == 3) {
+      return require('../../assets/contenedor.png');
     }
   };
 
@@ -136,7 +135,6 @@ export default function MapsScreen({ navigation }) {
           IDTipo = 3;
           break;
       }
-
       let unfilteredArray = placesData;
       let filteredArray;
 
@@ -144,7 +142,7 @@ export default function MapsScreen({ navigation }) {
         filteredArray = unfilteredArray;
       } else {
         filteredArray = unfilteredArray.filter(function (item) {
-          return item.IDTipo == IDTipo;
+          return item.locationType.id == IDTipo;
         });
       }
 
@@ -165,7 +163,7 @@ export default function MapsScreen({ navigation }) {
     [placesData, locationCustomPin],
   );
 
-  const renderContent = () => (
+  const renderBottomSheetContent = () => (
     <View
       style={{
         backgroundColor: 'white',
@@ -224,7 +222,7 @@ export default function MapsScreen({ navigation }) {
             <SimpleLineIcons
               style={styles.imgMenuList}
               name="menu"
-              size={24}
+              size={20}
               color="black"
             />
             <Text>Ver locaciones</Text>
@@ -234,9 +232,10 @@ export default function MapsScreen({ navigation }) {
 
       <BottomSheet
         ref={sheetRef}
-        snapPoints={[450, 300, 0]}
+        snapPoints={[400, 0]}
         borderRadius={10}
-        renderContent={renderContent}
+        renderContent={renderBottomSheetContent}
+        initialSnap={1}
       />
     </View>
   );

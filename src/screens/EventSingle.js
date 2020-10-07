@@ -8,7 +8,7 @@ import {
     Image,
 } from 'react-native';
 import CheckBox from '@react-native-community/checkbox';
-import { Feather } from '@expo/vector-icons';
+import EventData from '../utils/EventData';
 import styles from '../styles/buttons';
 import styles2 from '../styles/supportS';
 

@@ -7,13 +7,15 @@ import {
     TouchableOpacity,
     Image,
 } from 'react-native';
-import { Feather } from '@expo/vector-icons';
+import EventData from '../utils/EventData';
 import styles from '../styles/buttons';
 import styles2 from '../styles/supportS';
 
 export default function EventList(props) {
     const { route } = props;
     const cat = route.params.category;
+
+
     return (
         <SafeAreaView style={{ flex: 1 }}>
             <View style={{ flex: 1, padding: 16, backgroundColor: '#fff' }}>

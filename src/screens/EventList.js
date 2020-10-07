@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, useEffect } from 'react';
 import {
     Text,
     View,
@@ -15,6 +15,11 @@ export default function EventList(props) {
     const { route } = props;
     const cat = route.params.category;
 
+    useEffect(() => {
+        EventData().then((Marker) => {
+            console.log(Marker);
+        });
+    }, []);
 
     return (
         <SafeAreaView style={{ flex: 1 }}>

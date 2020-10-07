@@ -28,7 +28,11 @@ export default class EventScreen extends Component {
           >
             <TouchableOpacity
               style={styles.button}
-              onPress={() => this.props.navigation.navigate('EventList', { category: 'Siembra' })}
+              onPress={() =>
+                this.props.navigation.navigate('EventList', {
+                  category: 'Siembra',
+                })
+              }
             >
               <Image
                 source={require('../../assets/siembra.png')}
@@ -44,7 +48,11 @@ export default class EventScreen extends Component {
             </TouchableOpacity>
             <TouchableOpacity
               style={styles.button}
-              onPress={() => this.props.navigation.navigate('EventList', { category: 'Limpiezas' })}
+              onPress={() =>
+                this.props.navigation.navigate('EventList', {
+                  category: 'Limpiezas',
+                })
+              }
             >
               <Image
                 source={require('../../assets/limpiezas.png')}
@@ -60,7 +68,11 @@ export default class EventScreen extends Component {
             </TouchableOpacity>
             <TouchableOpacity
               style={styles.button}
-              onPress={() => this.props.navigation.navigate('EventList', { category: 'Reciclaje' })}
+              onPress={() =>
+                this.props.navigation.navigate('EventList', {
+                  category: 'Reciclaje',
+                })
+              }
             >
               <Image
                 source={require('../../assets/reciclaje.png')}

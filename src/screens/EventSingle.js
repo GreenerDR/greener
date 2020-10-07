@@ -46,24 +46,6 @@ export default function EventSingle(props) {
             <Text style={styles.buttonText}> Organizado por Corona </Text>
           </View>
 
-<<<<<<< HEAD
-                    <View style={styles.eventContainer}>
-                        <CheckBox
-                            disabled={false}
-                            value={toggleCheckBox}
-                            onValueChange={(newValue) => setToggleCheckBox(newValue)}
-                            style={styles.iconsGuide}
-                        />
-                        <Text style={styles.buttonText}> Asistir </Text>
-                    </View>
-
-                    <Text style={styles.buttonText}> Respuesta: Asistirán {toggleCheckBox ? "1" : "0"}. </Text>
-
-                </View>
-            </View>
-        </SafeAreaView>
-    );
-=======
           <View style={styles.eventContainer}>
             <CheckBox
               disabled={false}
@@ -73,13 +55,11 @@ export default function EventSingle(props) {
             />
             <Text style={styles.buttonText}> Asistir </Text>
           </View>
-          <Text style={styles.buttonText}>
-            {' '}
-            Respuesta: Asistirán {toggleCheckBox ? '1' : '0'}.{' '}
-          </Text>
+
+          <Text style={styles.buttonText}> Respuesta: Asistirán {toggleCheckBox ? "1" : "0"}. </Text>
+
         </View>
       </View>
     </SafeAreaView>
   );
->>>>>>> c44dcc5a0a0f39cb2d9b5eaa66dc8a5525ba47d1
 }

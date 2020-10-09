@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { getData } from '../utils/DataStorage';
-
+import { Alert } from 'react-native';
 let marker;
 export default async function dataMarker() {
   const userData = await getData();
@@ -17,6 +17,16 @@ export default async function dataMarker() {
     data = response.data;
   } catch (error) {
     console.log('An error occurred:', error.response);
+    Alert.alert(
+      'Los sentimos, sucedio un error. Por favor intente de nuevo!',
+      error.message,
+      [
+        {
+          text: 'Intente de nuevo',
+          onPress: this.getData(),
+        },
+      ],
+    );
   }
   return data;
 }

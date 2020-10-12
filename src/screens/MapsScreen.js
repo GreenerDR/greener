@@ -4,9 +4,8 @@ import { Marker } from 'react-native-maps';
 import {
   StyleSheet,
   Text,
-  View,
-  FlatList,
   TouchableOpacity,
+  View,
   Dimensions,
 } from 'react-native';
 import MarkerData from '../utils/MarkerData';
@@ -17,7 +16,8 @@ import BottomSheet from 'reanimated-bottom-sheet';
 import { SimpleLineIcons } from '@expo/vector-icons';
 import { MaterialIcons } from '@expo/vector-icons';
 import NetInfo from '@react-native-community/netinfo';
-import { ScrollView } from 'react-native-gesture-handler';
+import {ScrollView, FlatList, TouchableOpacity as Touchable
+} from 'react-native-gesture-handler';
 
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
@@ -171,15 +171,24 @@ export default function MapsScreen({ navigation }) {
     [placesData, locationCustomPin],
   );
 
-  const renderBottomSheetContent = () => (
-    <View 
-      horizontal= {true}
-      style={styles.bottomSheet}>
-      <LocationList placesData={placesData} />
-    </View>
-  );
   const sheetRef = React.useRef(null);
   const Map = useRef(null);
+
+  const renderBottomSheetContent = () => (
+    <View style={styles.bottomSheet}>
+      <Touchable onPress={() => {
+              sheetRef.current.snapTo(1);
+            }}>
+        <SimpleLineIcons
+                style={styles.imgCloseMenuList}
+                name="menu"
+                size={30}
+                color="green"
+              />
+        </Touchable>
+      <LocationList placesData={placesData} navigation = {navigation} />
+    </View>
+  );
 
   if (isConected == false) {
     return (
@@ -249,7 +258,7 @@ export default function MapsScreen({ navigation }) {
         <BottomSheet
           ref={sheetRef}
           snapPoints={[400, 0]}
-          borderRadius={10}
+          borderRadius={15}
           renderContent={renderBottomSheetContent}
           initialSnap={1}
         />
@@ -331,7 +340,13 @@ const styles = StyleSheet.create({
   bottomSheet: {
     backgroundColor: 'white',
     width: windowWidth,
-    height: 400,
-    padding: 16,
+    height: windowHeight*0.50,
+    padding: windowWidth*0.016,
+    justifyContent: 'center',
+    alignItems: 'center',
   },
+  imgCloseMenuList:{
+    justifyContent: 'center',
+    alignItems: 'center',
+  }
 });

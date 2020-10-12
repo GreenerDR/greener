@@ -4,10 +4,9 @@ import {
   View,
   Dimensions,
   Text,
-  TouchableOpacity,
-  FlatList,
-  Image,ScrollView
+    Image,
 } from 'react-native';
+import {ScrollView, FlatList, TouchableOpacity} from 'react-native-gesture-handler';
 
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
@@ -16,7 +15,7 @@ const windowHeight = Dimensions.get('window').height;
 const Item = ({ item, onPress }) => {
   return(
   <TouchableOpacity onPress={onPress} style={[styles.item]}>
-      <View style={styles.titleAndDescriptionView}>
+      <View style = {styles.listItemInfo}>
       <Image
           style={styles.image}
           source={{
@@ -25,55 +24,72 @@ const Item = ({ item, onPress }) => {
               item.image[0].formats.thumbnail.url,
           }}
         />
+      <View style={styles.titleAndAddressView}>
         <Text style={styles.title}>{item.title}</Text>
-        <Text style={styles.description}>{item.description}</Text>
+        <Text style={styles.address}>{item.address}</Text> 
+        <Text style = {styles.address}>{item.locationType.type}</Text>     
+        </View>
       </View>
-      <Text style={styles.title}>{item.address}</Text>
     </TouchableOpacity>
 );
         }
 
-const renderItem = ({ item }) => {  
-  return (
-    <Item
-      item={item}
-      onPress={() => {
-      console.log('queso');
-      }}
-    />
-  );
-};
+
 export default function LocationList(props) {
 
-  const { placesData } = props; 
+  const { placesData, navigation } = props; 
+
+  const renderItem = ({ item }) => {  
+    return (
+      <Item
+        item={item}
+        onPress={() => {
+          navigation.navigate('Location', item);
+        }}
+      />
+    );
+  };
 
     return (
-    <ScrollView style={styles.container}>
+    <View style={styles.container}>
       <FlatList
         data={placesData}
         renderItem={renderItem}
         keyExtractor={item => item.id}
       />
-    </ScrollView>
+    </View>
   );
 }
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    width: windowWidth*0.95,
   },
   item: {
-    padding: 20,
-    marginVertical: 8,
-    marginHorizontal: 16,
+    marginVertical: windowWidth*0.01,
+    marginHorizontal: windowWidth*0.016,
   },
   title: {
-    fontSize: 12,
+    fontSize: 20,
+    color: '#8cc63f'
   },
-  titleAndDescriptionView: {
+  listItemInfo: {
     flexDirection: 'row',
+    
   },
-  description:{
-    marginLeft: 10,
-    fontSize: 10
+  titleAndAddressView: {
+    flexDirection: 'column',
+    flexShrink: 1,
+    marginLeft: windowWidth*0.015,
+  },
+
+  address:{
+    color:"#372a0c", 
+    marginRight: 10,
+    fontSize: 15
+  },
+  image:{
+    width:150,
+    height: 150,
   }
 });

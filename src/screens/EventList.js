@@ -1,4 +1,4 @@
-import React, { Component, useEffect } from 'react';
+import React, { Component, useEffect, useState } from 'react';
 import {
     Text,
     View,
@@ -6,7 +6,9 @@ import {
     SafeAreaView,
     TouchableOpacity,
     Image,
+    FlatList,
 } from 'react-native';
+import { ListItem, Avatar } from 'react-native-elements'
 import EventData from '../utils/EventData';
 import styles from '../styles/buttons';
 import styles2 from '../styles/supportS';
@@ -15,11 +17,14 @@ export default function EventList(props) {
     const { route } = props;
     const cat = route.params.category;
 
+    const [data, setData] = useState({});
+
     useEffect(() => {
-        EventData().then((Marker) => {
-            console.log(Marker);
-        });
+        EventData()
+            .then(data => setData(data))
+            .then(console.log(data));
     }, []);
+
 
     return (
         <SafeAreaView style={{ flex: 1 }}>
@@ -40,8 +45,12 @@ export default function EventList(props) {
                         <Text style={styles.eventButtonDate}>MAR., 22 SEP. 2020</Text>
                         <Text style={styles.eventButtonText}>Limpieza de costas Playa Guibia</Text>
                     </TouchableOpacity>
+
                     <Text style={styles.seeAll}>Total de eventos: 1</Text>
+
+
                 </View>
+
             </View>
         </SafeAreaView >
     );

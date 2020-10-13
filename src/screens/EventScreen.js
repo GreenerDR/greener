@@ -6,7 +6,9 @@ import {
   SafeAreaView,
   TouchableOpacity,
   Image,
+  FlatList,
 } from 'react-native';
+import { ListItem, Avatar } from 'react-native-elements'
 import EventData from '../utils/EventData';
 import { Feather } from '@expo/vector-icons';
 import styles from '../styles/buttons';

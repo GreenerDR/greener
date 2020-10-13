@@ -125,4 +125,8 @@ export default StyleSheet.create({
     fontWeight: 'bold',
     color: '#CE9F20',
   },
+  separator: {
+    height: 1,
+    backgroundColor: '#CED0CE',
+  }
 });

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Text, View, StyleSheet, Image } from 'react-native';
+import { Text, View, StyleSheet, Image, Dimensions, ScrollView, } from 'react-native';
 import { Feather } from '@expo/vector-icons';
 import { SafeAreaView } from 'react-navigation';
 

@@ -1,41 +1,44 @@
-import React, { Component, useState } from 'react';
+import React, { useState } from 'react';
 import {
   Text,
   View,
-  StyleSheet,
   SafeAreaView,
-  TouchableOpacity,
   Image,
+  ScrollView
 } from 'react-native';
+import moment from 'moment'
+import 'moment/locale/es';
 import CheckBox from '@react-native-community/checkbox';
-import EventData from '../utils/EventData';
 import styles from '../styles/buttons';
 import styles2 from '../styles/supportS';
 
 export default function EventSingle(props) {
   const { route } = props;
-  const eventName = route.params.name;
-  const eventDate = route.params.date;
+  const eventDetail = route.params;
+
   const [toggleCheckBox, setToggleCheckBox] = useState(false);
 
-  let asistencia = 1;
   return (
     <SafeAreaView style={{ flex: 1 }}>
-      <View style={{ flex: 1, padding: 16, backgroundColor: '#fff' }}>
+      <ScrollView style={{ flex: 1, padding: 16, backgroundColor: '#fff' }}>
         <View style={{ flex: 1, alignItems: 'center', marginVertical: 30 }}>
-          <Text style={styles2.title}>{eventName}</Text>
+          <Text style={styles2.title}>{eventDetail.title}</Text>
           <Image
-            source={require('../../assets/limpiezadeplaya.jpg')}
+            source={{
+              uri:
+                'https://greenerappdr.herokuapp.com' +
+                eventDetail.image[0].formats.thumbnail.url,
+            }}
             style={styles.singleEventPic}
           />
-          <Text style={styles2.subtitle}>{eventDate}</Text>
+          <Text style={styles2.subtitle}>{moment(eventDetail.datetime).locale('es').format('LLLL')}</Text>
 
           <View style={styles.eventContainer}>
             <Image
               source={require('../../assets/locationE.png')}
               style={styles.iconsGuide}
             />
-            <Text style={styles.buttonText}> Playa Guibia </Text>
+            <Text style={styles.buttonText}> {eventDetail.address} </Text>
           </View>
 
           <View style={styles.eventContainer}>
@@ -43,7 +46,7 @@ export default function EventSingle(props) {
               source={require('../../assets/webE.png')}
               style={styles.iconsGuide}
             />
-            <Text style={styles.buttonText}> Organizado por Corona </Text>
+            <Text style={styles.buttonText}> Organizado por {eventDetail.eventRepresentative.name} </Text>
           </View>
 
           <View style={styles.eventContainer}>
@@ -56,10 +59,10 @@ export default function EventSingle(props) {
             <Text style={styles.buttonText}> Asistir </Text>
           </View>
 
-          <Text style={styles.buttonText}> Respuesta: Asistirán {toggleCheckBox ? "1" : "0"}. </Text>
+          <Text style={styles.buttonText}> Respuesta: Asistirán {toggleCheckBox ? eventDetail.eventAssistances.length + 1 : eventDetail.eventAssistances.length} </Text>
 
         </View>
-      </View>
+      </ScrollView>
     </SafeAreaView>
   );
 }

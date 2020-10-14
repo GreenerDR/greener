@@ -15,7 +15,7 @@ export default StyleSheet.create({
   eventButton: {
     backgroundColor: '#fff',
     justifyContent: 'center',
-    width: 400,
+    width: 350,
     height: 100,
     borderColor: '#3E721E',
     borderRadius: 8,
@@ -25,26 +25,22 @@ export default StyleSheet.create({
   iconEvent: {
     width: 80,
     height: 80,
-    alignSelf: 'flex-start',
-    marginHorizontal: 10,
-    marginBottom: 90,
     borderRadius: 8,
   },
   eventButtonText: {
     color: '#372A0B',
     fontWeight: 'bold',
-    marginLeft: 95,
     fontSize: 18,
+    marginTop: -90,
+    marginLeft: 150,
   },
   eventButtonDate: {
     color: '#8BC63F',
     fontWeight: 'bold',
-    marginLeft: 95,
     fontSize: 15,
-    marginTop: -140,
+    marginLeft: 150,
   },
   singleEventPic: {
-    backgroundColor: '#fff',
     justifyContent: 'center',
     width: 350,
     height: 200,
@@ -85,6 +81,11 @@ export default StyleSheet.create({
     marginHorizontal: 30,
     color: '#CE9F20',
     marginBottom: 150,
+  },
+
+  kindabrown: {
+    color: '#CE9F20',
+    fontSize: 18,
   },
   seeAllEvent: {
     fontSize: 18,

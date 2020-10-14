@@ -6,7 +6,7 @@ import {
   Text,
     Image,
 } from 'react-native';
-import {ScrollView, FlatList, TouchableOpacity} from 'react-native-gesture-handler';
+import { FlatList, TouchableOpacity} from 'react-native-gesture-handler';
 
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
@@ -27,7 +27,7 @@ const Item = ({ item, onPress }) => {
       <View style={styles.titleAndAddressView}>
         <Text style={styles.title}>{item.title}</Text>
         <Text style={styles.address}>{item.address}</Text> 
-        <Text style = {styles.address}>{item.locationType.type}</Text>     
+        <Text style = {[styles.address, styles.typeOfLocation]}>{item.locationType.type}</Text>     
         </View>
       </View>
     </TouchableOpacity>
@@ -86,7 +86,10 @@ const styles = StyleSheet.create({
   address:{
     color:"#372a0c", 
     marginRight: 10,
-    fontSize: 15
+    fontSize: 15,
+  },
+  typeOfLocation:{
+    fontWeight: 'bold'
   },
   image:{
     width:150,

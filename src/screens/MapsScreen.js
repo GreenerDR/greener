@@ -4,16 +4,20 @@ import { Marker } from 'react-native-maps';
 import {
   StyleSheet,
   Text,
-  View,
-  FlatList,
   TouchableOpacity,
+  View,
   Dimensions,
 } from 'react-native';
 import MarkerData from '../utils/MarkerData';
 import MapsSearchBar from '../components/MapsSearchBar';
+import LocationList from '../components/LocationList';
 import Animated from 'react-native-reanimated';
 import BottomSheet from 'reanimated-bottom-sheet';
 import { SimpleLineIcons } from '@expo/vector-icons';
+import { MaterialIcons } from '@expo/vector-icons';
+import NetInfo from '@react-native-community/netinfo';
+import {ScrollView, FlatList, TouchableOpacity as Touchable
+} from 'react-native-gesture-handler';
 
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
@@ -38,14 +42,17 @@ const DATA = [
 ];
 
 export default function MapsScreen({ navigation }) {
+  const [isConected, setIsConected] = useState();
   const [placesData, setPlacesData] = useState([]);
-  //const [selectedLocation, setSelectedLocation] = useState({});
   const [selectedItem, setSelectedItem] = useState({
     id: '0',
     title: 'Todos',
   });
-  //todos
   const [selectedAllLocations, setSelectedAllLocations] = useState(0);
+
+  NetInfo.fetch().then((state) => {
+    setIsConected(state.isConnected);
+  });
 
   const Item = ({ item, onPress, style }) => (
     <TouchableOpacity onPress={onPress} style={[styles.item, style]}>
@@ -94,27 +101,27 @@ export default function MapsScreen({ navigation }) {
         setSelectedAllLocations(1);
         console.log('solo centros');
       }
-      if (selectedItem.title == 'Contenedores') {
-        setSelectedAllLocations(2);
-        console.log('solo contenedores');
-      }
       if (selectedItem.title == 'Tiendas') {
-        setSelectedAllLocations(3);
+        setSelectedAllLocations(2);
         console.log('solo tiendas');
+      }
+      if (selectedItem.title == 'Contenedores') {
+        setSelectedAllLocations(3);
+        console.log('solo contenedores');
       }
     },
     [selectedItem],
   );
   // pasar a funcion util
   const locationCustomPin = (item) => {
-    if (item.IDTipo == 1) {
-      return require('../../assets/recycleT.png');
+    if (item.locationType.id == 1) {
+      return require('../../assets/centroAcopio.png');
     }
-    if (item.IDTipo == 2) {
-      return require('../../assets/trashT.png');
+    if (item.locationType.id == 2) {
+      return require('../../assets/tiendaEco.png');
     }
-    if (item.IDTipo == 3) {
-      return require('../../assets/recyclableT.png');
+    if (item.locationType.id == 3) {
+      return require('../../assets/contenedor.png');
     }
   };
 
@@ -136,7 +143,6 @@ export default function MapsScreen({ navigation }) {
           IDTipo = 3;
           break;
       }
-
       let unfilteredArray = placesData;
       let filteredArray;
 
@@ -144,7 +150,7 @@ export default function MapsScreen({ navigation }) {
         filteredArray = unfilteredArray;
       } else {
         filteredArray = unfilteredArray.filter(function (item) {
-          return item.IDTipo == IDTipo;
+          return item.locationType.id == IDTipo;
         });
       }
 
@@ -165,81 +171,100 @@ export default function MapsScreen({ navigation }) {
     [placesData, locationCustomPin],
   );
 
-  const renderContent = () => (
-    <View
-      style={{
-        backgroundColor: 'white',
-        padding: 16,
-        height: 450,
-      }}
-    >
-      <Text>Swipe down to close</Text>
-    </View>
-  );
-
   const sheetRef = React.useRef(null);
   const Map = useRef(null);
 
-  return (
-    <View style={styles.container}>
-      <MapView
-        style={styles.mapStyle}
-        initialRegion={{
-          latitude: 18.490622,
-          longitude: -69.958738,
-          latitudeDelta: 0.09,
-          longitudeDelta: 0.1,
-        }}
-        ref={(MapView) => {
-          Map.current = MapView;
-        }}
-      >
-        {changePingLocations(selectedAllLocations)}
-      </MapView>
-
-      <View style={styles.actionComponents}>
-        <MapsSearchBar
-          Map={Map}
-          setSelectedItem={setSelectedItem}
-          placesData={placesData}
-        />
-        <FlatList
-          style={styles.list}
-          data={DATA}
-          renderItem={renderItem}
-          keyExtractor={(item) => item.id}
-          extraData={selectedItem}
-          horizontal={true}
-          showsHorizontalScrollIndicator={false}
-        />
-      </View>
-      <View style={styles.listButttonView}>
-        <TouchableOpacity
-          style={styles.listButtton}
-          onPress={() => {
-            sheetRef.current.snapTo(0);
-          }}
-        >
-          <View style={styles.touchableView}>
-            <SimpleLineIcons
-              style={styles.imgMenuList}
-              name="menu"
-              size={24}
-              color="black"
-            />
-            <Text>Ver locaciones</Text>
-          </View>
-        </TouchableOpacity>
-      </View>
-
-      <BottomSheet
-        ref={sheetRef}
-        snapPoints={[450, 300, 0]}
-        borderRadius={10}
-        renderContent={renderContent}
-      />
+  const renderBottomSheetContent = () => (
+    <View style={styles.bottomSheet}>
+      <Touchable onPress={() => {
+              sheetRef.current.snapTo(1);
+            }}>
+        <SimpleLineIcons
+                style={styles.imgCloseMenuList}
+                name="menu"
+                size={30}
+                color="green"
+              />
+        </Touchable>
+      <LocationList placesData={placesData} navigation = {navigation} />
     </View>
   );
+
+  if (isConected == false) {
+    return (
+      <View style={styles.noInternetScreen}>
+        <View style={styles.noInternetContainer}>
+          <MaterialIcons
+            name="signal-cellular-connected-no-internet-4-bar"
+            size={60}
+            color="green"
+          />
+          <Text>Sin internet</Text>
+        </View>
+      </View>
+    );
+  } else {
+    return (
+      <View style={styles.container}>
+        <MapView
+          style={styles.mapStyle}
+          initialRegion={{
+            latitude: 18.490622,
+            longitude: -69.958738,
+            latitudeDelta: 0.09,
+            longitudeDelta: 0.1,
+          }}
+          ref={(MapView) => {
+            Map.current = MapView;
+          }}
+        >
+          {changePingLocations(selectedAllLocations)}
+        </MapView>
+
+        <View style={styles.actionComponents}>
+          <MapsSearchBar
+            Map={Map}
+            setSelectedItem={setSelectedItem}
+            placesData={placesData}
+          />
+          <FlatList
+            style={styles.list}
+            data={DATA}
+            renderItem={renderItem}
+            keyExtractor={(item) => item.id}
+            extraData={selectedItem}
+            horizontal={true}
+            showsHorizontalScrollIndicator={false}
+          />
+        </View>
+        <View style={styles.listButttonView}>
+          <TouchableOpacity
+            style={styles.listButtton}
+            onPress={() => {
+              sheetRef.current.snapTo(0);
+            }}
+          >
+            <View style={styles.touchableView}>
+              <SimpleLineIcons
+                style={styles.imgMenuList}
+                name="menu"
+                size={20}
+                color="black"
+              />
+              <Text>Ver locaciones</Text>
+            </View>
+          </TouchableOpacity>
+        </View>
+        <BottomSheet
+          ref={sheetRef}
+          snapPoints={[400, 0]}
+          borderRadius={15}
+          renderContent={renderBottomSheetContent}
+          initialSnap={1}
+        />
+      </View>
+    );
+  }
 }
 const styles = StyleSheet.create({
   container: {
@@ -299,4 +324,29 @@ const styles = StyleSheet.create({
   },
   selectedOption: { color: '#fff' },
   notSelectedOption: { color: '#000000' },
+  noInternetScreen: {
+    width: windowWidth,
+    height: windowHeight,
+    alignItems: 'center',
+    backgroundColor: '#fff',
+    flexDirection: 'column',
+  },
+  noInternetContainer: {
+    marginTop: windowHeight * 0.35,
+    marginBottom: windowHeight * 0.35,
+    marginRight: windowWidth * 0.05,
+    marginLeft: windowWidth * 0.05,
+  },
+  bottomSheet: {
+    backgroundColor: 'white',
+    width: windowWidth,
+    height: windowHeight*0.50,
+    padding: windowWidth*0.016,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  imgCloseMenuList:{
+    justifyContent: 'center',
+    alignItems: 'center',
+  }
 });

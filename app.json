@@ -24,6 +24,11 @@
     },
     "android": {
       "package": "com.greener.greener",
+      "config": {
+        "googleMaps": {
+          "apiKey": "AIzaSyCoreZJ0cI1mwJBJyEpLWaZS9GwBVXCLVI"
+        }
+      },
       "versionCode": 1
     },
     "web": {

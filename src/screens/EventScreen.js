@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, useEffect, useState } from 'react';
 import {
   Text,
   View,
@@ -7,8 +7,11 @@ import {
   TouchableOpacity,
   Image,
 } from 'react-native';
+import EventData from '../utils/EventData';
 import { Feather } from '@expo/vector-icons';
 import styles from '../styles/buttons';
+
+const data = EventData();
 
 export default class EventScreen extends Component {
   render() {
@@ -83,7 +86,11 @@ export default class EventScreen extends Component {
               />
             </TouchableOpacity>
           </View>
-          {/* <Text style={styles.seeAllEvent}>Ver todo</Text> */}
+          <Text onPress={() =>
+            this.props.navigation.navigate('EventList', {
+              category: 'Todos',
+            })
+          } style={styles.seeAllEvent}>Ver todos</Text>
         </View>
       </SafeAreaView>
     );

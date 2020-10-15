@@ -1,4 +1,6 @@
-import { StyleSheet } from 'react-native';
+import { StyleSheet, Dimensions } from 'react-native';
+const windowWidth = Dimensions.get('window').width;
+const windowHeight = Dimensions.get('window').height;
 
 export default StyleSheet.create({
   button: {
@@ -12,10 +14,32 @@ export default StyleSheet.create({
     borderWidth: 1.5,
     marginVertical: -45,
   },
+  buttonA: {
+    backgroundColor: '#8BC63F',
+    justifyContent: 'center',
+    alignItems: 'center',
+    alignSelf: 'center',
+    width: windowWidth * 0.65,
+    height: windowWidth * 0.10,
+    borderColor: '#3E721E',
+    borderRadius: 8,
+    borderWidth: 1.5,
+  },
+  buttonB: {
+    backgroundColor: '#1F6A39',
+    justifyContent: 'center',
+    alignItems: 'center',
+    alignSelf: 'center',
+    width: windowWidth * 0.65,
+    height: windowWidth * 0.10,
+    borderColor: '#3E721E',
+    borderRadius: 8,
+    borderWidth: 1.5,
+  },
   eventButton: {
     backgroundColor: '#fff',
     justifyContent: 'center',
-    width: 400,
+    width: 350,
     height: 100,
     borderColor: '#3E721E',
     borderRadius: 8,
@@ -25,26 +49,22 @@ export default StyleSheet.create({
   iconEvent: {
     width: 80,
     height: 80,
-    alignSelf: 'flex-start',
-    marginHorizontal: 10,
-    marginBottom: 90,
     borderRadius: 8,
   },
   eventButtonText: {
     color: '#372A0B',
     fontWeight: 'bold',
-    marginLeft: 95,
     fontSize: 18,
+    marginTop: -90,
+    marginLeft: 150,
   },
   eventButtonDate: {
     color: '#8BC63F',
     fontWeight: 'bold',
-    marginLeft: 95,
     fontSize: 15,
-    marginTop: -140,
+    marginLeft: 150,
   },
   singleEventPic: {
-    backgroundColor: '#fff',
     justifyContent: 'center',
     width: 350,
     height: 200,
@@ -86,6 +106,11 @@ export default StyleSheet.create({
     color: '#CE9F20',
     marginBottom: 150,
   },
+
+  kindabrown: {
+    color: '#CE9F20',
+    fontSize: 18,
+  },
   seeAllEvent: {
     fontSize: 18,
     textAlign: 'right',
@@ -125,4 +150,8 @@ export default StyleSheet.create({
     fontWeight: 'bold',
     color: '#CE9F20',
   },
+  separator: {
+    height: 1,
+    backgroundColor: '#CED0CE',
+  }
 });

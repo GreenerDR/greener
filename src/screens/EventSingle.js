@@ -1,41 +1,66 @@
-import React, { Component, useState } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import {
   Text,
   View,
-  StyleSheet,
   SafeAreaView,
-  TouchableOpacity,
   Image,
+  ScrollView,
+  TouchableOpacity,
 } from 'react-native';
-import CheckBox from '@react-native-community/checkbox';
-import { Feather } from '@expo/vector-icons';
+import moment from 'moment'
+import 'moment/locale/es';
 import styles from '../styles/buttons';
 import styles2 from '../styles/supportS';
+import { userWillAssist } from '../utils/EventAssistance.utils';
+
 
 export default function EventSingle(props) {
   const { route } = props;
-  const eventName = route.params.name;
-  const eventDate = route.params.date;
-  const [toggleCheckBox, setToggleCheckBox] = useState(false);
+  const eventDetail = route.params;
 
-  let asistencia = 1;
+  const [isPressed, setPress] = useState(false);
+
+  function userWillAssist() {
+
+  }
+
+  // useEffect(() => {
+  //   userWillAssist(eventDetail.id)
+  //     .then((assisQuant) => {
+  //       setToggleCheckBox(Boolean(assisQuant))
+  //     })
+  // }, []);
+
+  function handleCheckBox(newValue) {
+    console.log('Entraste a handleCheckbox');
+    const willAssist = userWillAssist(eventDetail.id)
+    if (newValue != willAssist) {
+      return newValue ? console.log('Soy pepe') : console.log('No soy pepe')
+    }
+    console.log('was');
+  }
+
   return (
     <SafeAreaView style={{ flex: 1 }}>
-      <View style={{ flex: 1, padding: 16, backgroundColor: '#fff' }}>
+      <ScrollView style={{ flex: 1, padding: 16, backgroundColor: '#fff' }}>
         <View style={{ flex: 1, alignItems: 'center', marginVertical: 30 }}>
-          <Text style={styles2.title}>{eventName}</Text>
+          <Text style={styles2.title}>{eventDetail.title}</Text>
           <Image
-            source={require('../../assets/limpiezadeplaya.jpg')}
+            source={{
+              uri:
+                'https://greenerappdr.herokuapp.com' +
+                eventDetail.image[0].formats.thumbnail.url,
+            }}
             style={styles.singleEventPic}
           />
-          <Text style={styles2.subtitle}>{eventDate}</Text>
+          <Text style={styles2.subtitle}>{moment(eventDetail.datetime).locale('es').format('LLLL')}</Text>
 
           <View style={styles.eventContainer}>
             <Image
               source={require('../../assets/locationE.png')}
               style={styles.iconsGuide}
             />
-            <Text style={styles.buttonText}> Playa Guibia </Text>
+            <Text style={styles.buttonText}> {eventDetail.address} </Text>
           </View>
 
           <View style={styles.eventContainer}>
@@ -43,24 +68,23 @@ export default function EventSingle(props) {
               source={require('../../assets/webE.png')}
               style={styles.iconsGuide}
             />
-            <Text style={styles.buttonText}> Organizado por Corona </Text>
+            <Text style={styles.buttonText}> Organizado por {eventDetail.eventRepresentative.name} </Text>
           </View>
 
           <View style={styles.eventContainer}>
-            <CheckBox
-              disabled={false}
-              value={toggleCheckBox}
-              onValueChange={(newValue) => setToggleCheckBox(newValue)}
-              style={styles.iconsGuide}
-            />
-            <Text style={styles.buttonText}> Asistir </Text>
+
+            <TouchableOpacity
+              style={isPressed ? styles.buttonA : styles.buttonB}
+              value={isPressed}
+              onPress={setPress}>
+              <Text style={styles.buttonText}>Asistir</Text>
+            </TouchableOpacity>
           </View>
-          <Text style={styles.buttonText}>
-            {' '}
-            Respuesta: Asistirán {toggleCheckBox ? '1' : '0'}.{' '}
-          </Text>
+
+          <Text style={styles.buttonText}> Respuesta: Asistirán {isPressed ? eventDetail.eventAssistances.length + 1 : eventDetail.eventAssistances.length} </Text>
+
         </View>
-      </View>
+      </ScrollView>
     </SafeAreaView>
   );
 }

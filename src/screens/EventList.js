@@ -77,7 +77,7 @@ export default function EventList({ navigation, route }) {
 
 
     const eventsOfType = useMemo(() => eventsList?.filter((individualEvent) => {
-        return individualEvent.eventType.type === cat
+        return cat === 'Todos' || individualEvent.eventType.type === cat
     }), [eventsList, cat])
 
 

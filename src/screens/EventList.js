@@ -1,4 +1,4 @@
-import React, { Component, useEffect, useState } from 'react';
+import React, { Component, useEffect, useState, useMemo } from 'react';
 import {
     Text,
     View,
@@ -15,9 +15,9 @@ import 'moment/locale/es';
 import EventData from '../utils/EventData';
 import styles2 from '../styles/supportS';
 import styles3 from '../styles/buttons';
-import { YellowBox } from 'react-native';
+// import { YellowBox } from 'react-native';
 
-YellowBox.ignoreWarnings(['VirtualizedLists should never be nested']);
+// YellowBox.ignoreWarnings(['VirtualizedLists should never be nested']);
 
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
@@ -47,15 +47,9 @@ const Item = ({ item, onPress }) => {
     );
 }
 
-export default function EventList(props) {
-    const { navigation, route } = props;
+export default function EventList({ navigation, route }) {
+
     const cat = route.params.category;
-
-
-    //usar listitem con avatar para la lista de eventos
-    //hacerlo con un for i con data[i]. title, etc hasta que data[length]
-    //instalar moment y para la fecha en el boton usar moment().format('llll'); -Tue, Oct 13, 2020 7:22 PM
-    //y para el detallado moment().format('LLLL'); -Tuesday, October 13, 2020 7:23 PM
 
     moment('01/12/2016', 'DD/MM/YYYY', true).format()
 
@@ -70,77 +64,49 @@ export default function EventList(props) {
         );
     };
 
-    const [data, setData] = useState({});
+    const [eventsList, setEventsList] = useState(null);
 
     useEffect(() => {
         EventData()
-            .then(data => setData(data))
-            .then(console.log(data.eventType))
+            .then(data => {
+                setEventsList(data);
+                //console.log(data[0].eventType.type, data[0].eventType.id)
+                return data
+            })
     }, []);
 
 
+    const eventsOfType = useMemo(() => eventsList?.filter((individualEvent) => {
+        return individualEvent.eventType.type === cat
+    }), [eventsList, cat])
 
 
 
-    if (cat == 'Limpiezas') {
-
-        return (
-            <SafeAreaView style={{ flex: 1 }}>
-                <View style={{ flex: 1, padding: 16, backgroundColor: '#fff' }}>
-                    <View style={{ flex: 1, alignItems: 'center', marginVertical: 30, }}>
-                        <Text style={styles2.title}>{cat} </Text>
-
-                        <ScrollView style={styles.container}>
-                            <FlatList
-                                data={data}
+    return (
+        <SafeAreaView style={{ flex: 1 }}>
+            <View style={{ flex: 1, padding: 16, backgroundColor: '#fff' }}>
+                <View style={{ flex: 1, alignItems: 'center', marginVertical: 30, }}>
+                    <Text style={styles2.title}>{cat} </Text>
+                    {
+                        eventsOfType && eventsOfType.length ? <>
+                            <FlatList style={styles.container}
+                                data={eventsOfType}
                                 renderItem={renderItem}
-                                keyExtractor={item => item.id}
+                                keyExtractor={item => item.id.toString()}
+
                             />
-                        </ScrollView>
-                        <Text style={styles3.kindabrown}>Total de eventos: {data.length} {/*data.eventType[0].type*/}</Text>
+                            <Text style={styles3.kindabrown}>Total de eventos: {eventsOfType.length}</Text>
+                        </>
+                            : <Text style={styles3.kindabrown}>No hay eventos de {cat} disponibles.</Text>
 
-
-                    </View>
-
+                    }
                 </View>
-            </SafeAreaView >)
-
-    } else if (cat == 'Siembra') {
-        return (
-            <SafeAreaView style={{ flex: 1 }}>
-                <View style={{ flex: 1, padding: 16, backgroundColor: '#fff' }}>
-                    <View style={{ flex: 1, alignItems: 'center', marginVertical: 30, }}>
-                        <Text style={styles2.title}>{cat} </Text>
-
-                        <Text style={styles3.kindabrown}>No hay eventos de {cat} disponibles.</Text>
-
-
-                    </View>
-
-                </View>
-            </SafeAreaView >
-        )
-    }
-
-    else if (cat == 'Reciclaje') {
-        return (
-            <SafeAreaView style={{ flex: 1 }}>
-                <View style={{ flex: 1, padding: 16, backgroundColor: '#fff' }}>
-                    <View style={{ flex: 1, alignItems: 'center', marginVertical: 30, }}>
-                        <Text style={styles2.title}>{cat} </Text>
-
-                        <Text style={styles3.kindabrown}>No hay eventos de {cat} disponibles.</Text>
-
-
-                    </View>
-
-                </View>
-            </SafeAreaView >
-        )
-    }
-
-
+            </View>
+        </SafeAreaView >
+    )
 }
+
+
 
 const styles = StyleSheet.create({
     container: {

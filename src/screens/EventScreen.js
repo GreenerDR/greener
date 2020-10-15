@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, useEffect, useState } from 'react';
 import {
   Text,
   View,
@@ -6,14 +6,12 @@ import {
   SafeAreaView,
   TouchableOpacity,
   Image,
-  FlatList,
 } from 'react-native';
-import { ListItem, Avatar } from 'react-native-elements'
 import EventData from '../utils/EventData';
 import { Feather } from '@expo/vector-icons';
 import styles from '../styles/buttons';
 
-const data = EventData;
+const data = EventData();
 
 export default class EventScreen extends Component {
   render() {

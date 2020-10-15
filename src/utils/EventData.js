@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { getData } from '../utils/DataStorage';
+import { getData, setData } from '../utils/DataStorage';
 
 let marker;
 export default async function dataEvent() {

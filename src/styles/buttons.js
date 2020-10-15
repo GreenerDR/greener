@@ -116,7 +116,8 @@ export default StyleSheet.create({
     textAlign: 'right',
     marginHorizontal: 30,
     color: '#CE9F20',
-    marginBottom: 220,
+    marginVertical: windowHeight*0.18,
+    //marginBottom: 220,
   },
   iconsGuide: {
     width: 30,

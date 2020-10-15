@@ -176,7 +176,8 @@ export default function MapsScreen({ navigation }) {
 
   const renderBottomSheetContent = () => (
     <View style={styles.bottomSheet}>
-      <Touchable onPress={() => {
+      <View >
+        <Touchable onPress={() => {
               sheetRef.current.snapTo(1);
             }}>
         <SimpleLineIcons
@@ -186,6 +187,7 @@ export default function MapsScreen({ navigation }) {
                 color="green"
               />
         </Touchable>
+      </View>
       <LocationList placesData={placesData} navigation = {navigation} />
     </View>
   );
@@ -340,7 +342,7 @@ const styles = StyleSheet.create({
   bottomSheet: {
     backgroundColor: 'white',
     width: windowWidth,
-    height: windowHeight*0.50,
+    height: windowHeight*0.60,
     padding: windowWidth*0.016,
     justifyContent: 'center',
     alignItems: 'center',

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import {
   Text,
   View,
@@ -11,12 +11,30 @@ import 'moment/locale/es';
 import CheckBox from '@react-native-community/checkbox';
 import styles from '../styles/buttons';
 import styles2 from '../styles/supportS';
+import { userWillAssist } from '../utils/EventAssistance.utils';
 
 export default function EventSingle(props) {
   const { route } = props;
   const eventDetail = route.params;
 
   const [toggleCheckBox, setToggleCheckBox] = useState(false);
+
+
+  useEffect(() => {
+    userWillAssist(eventDetail.id)
+      .then((assisQuant) => {
+        setToggleCheckBox(Boolean(assisQuant))
+      })
+  }, []);
+
+  function handleCheckBox(newValue) {
+    console.log('Entraste a handleCheckbox');
+    const willAssist = userWillAssist(eventDetail.id)
+    if (newValue != willAssist) {
+      return newValue ? console.log('Soy pepe') : console.log('No soy pepe')
+    }
+    console.log('was');
+  }
 
   return (
     <SafeAreaView style={{ flex: 1 }}>
@@ -52,7 +70,6 @@ export default function EventSingle(props) {
           <View style={styles.eventContainer}>
             <CheckBox
               disabled={false}
-              value={toggleCheckBox}
               onValueChange={(newValue) => setToggleCheckBox(newValue)}
               style={styles.iconsGuide}
             />

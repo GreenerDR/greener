@@ -97,7 +97,7 @@ export default function EventList({ navigation, route }) {
                             />
                             <Text style={styles3.kindabrown}>Total de eventos: {eventsOfType.length}</Text>
                         </>
-                            : <Text style={styles3.kindabrown}>No hay eventos de {cat} disponibles.</Text>
+                            : <Text style={styles.noInternetContainer}>No hay eventos de {cat} disponibles.</Text>
 
                     }
                 </View>

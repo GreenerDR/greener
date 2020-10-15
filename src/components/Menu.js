@@ -21,6 +21,7 @@ const Menu = () => {
         tabBarOptions={{
           activeTintColor: '#8cc63f',
           inactiveTintColor: '#372a0c',
+          keyboardHidesTabBar: true,
         }}
       >
         <Tab.Screen

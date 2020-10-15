@@ -10,7 +10,7 @@ import {
 import { MaterialCommunityIcons, Feather } from '@expo/vector-icons';
 import styles from '../styles/supportS';
 import { Linking } from 'react-native';
-import SupportForm from '../components/SupportForm';
+// import SupportForm from '../components/SupportForm';
 
 export default function SupportScreen() {
   return (
@@ -27,13 +27,19 @@ export default function SupportScreen() {
           <Text style={styles.subtitle}>
             Tienes alguna pregunta o duda, escríbenos
           </Text>
-          <SupportForm />
+          <TouchableOpacity
+            style={styles.buttonS}
+            onPress={() => Linking.openURL('http://google.com')}
+          >
+            <Text style={styles.buttonTextS}>Soporte Greener</Text>
+          </TouchableOpacity>
+          {/* <SupportForm /> */}
           <View style={styles.contactContainer}>
             <Text style={styles.contact}>Contáctanos</Text>
             <TouchableOpacity
               onPress={() =>
                 Linking.openURL(
-                  'mailto:greener@gmail.com?subject=Servicio de asistencia&body=Descripción',
+                  'mailto:greenerappdr@gmail.com?subject=Servicio de asistencia&body=Descripción',
                 )
               }
             >
@@ -45,10 +51,27 @@ export default function SupportScreen() {
                     size={30}
                   />
                 }
-                <Text style={styles.contactEmail}>greener@gmail.com</Text>
-                {/* {'greener@gmail.com'} */}
+                <Text style={styles.contactEmail}>greenerappdr@gmail.com</Text>
               </View>
             </TouchableOpacity>
+            <Text></Text>
+            <TouchableOpacity
+              onPress={() => {
+                Linking.openURL('tel:8292769743');
+              }}
+            >
+              <View>
+                {
+                  <MaterialCommunityIcons
+                    name="phone"
+                    color="#6E9F7F"
+                    size={30}
+                  />
+                }
+                <Text style={styles.contactEmail}>(829) 276-9743</Text>
+              </View>
+            </TouchableOpacity>
+
             <TouchableOpacity
               style={styles.button}
               onPress={() => this.props.navigation.navigate('Main')}

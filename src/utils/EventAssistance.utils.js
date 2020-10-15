@@ -21,7 +21,11 @@ export async function dataEvent() {
             {
                 headers: {
                     Authorization: 'Bearer ' + userData.jwt,
+
                 },
+                // event = eventId,
+                // user = userId
+
             },
         );
         data = response.data;

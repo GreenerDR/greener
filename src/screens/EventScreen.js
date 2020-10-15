@@ -15,7 +15,6 @@ const data = EventData();
 
 export default class EventScreen extends Component {
   render() {
-    console.log(data);
     return (
       <SafeAreaView style={{ flex: 1 }}>
         <View style={{ flex: 1, padding: 16, backgroundColor: '#fff' }}>

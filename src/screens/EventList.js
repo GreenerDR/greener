@@ -15,9 +15,6 @@ import 'moment/locale/es';
 import EventData from '../utils/EventData';
 import styles2 from '../styles/supportS';
 import styles3 from '../styles/buttons';
-// import { YellowBox } from 'react-native';
-
-// YellowBox.ignoreWarnings(['VirtualizedLists should never be nested']);
 
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
@@ -70,7 +67,6 @@ export default function EventList({ navigation, route }) {
         EventData()
             .then(data => {
                 setEventsList(data);
-                //console.log(data[0].eventType.type, data[0].eventType.id)
                 return data
             })
     }, []);

@@ -4,28 +4,32 @@ import {
   View,
   SafeAreaView,
   Image,
-  ScrollView
+  ScrollView,
+  TouchableOpacity,
 } from 'react-native';
 import moment from 'moment'
 import 'moment/locale/es';
-import CheckBox from '@react-native-community/checkbox';
 import styles from '../styles/buttons';
 import styles2 from '../styles/supportS';
 import { userWillAssist } from '../utils/EventAssistance.utils';
+
 
 export default function EventSingle(props) {
   const { route } = props;
   const eventDetail = route.params;
 
-  const [toggleCheckBox, setToggleCheckBox] = useState(false);
+  const [isPressed, setPress] = useState(false);
 
+  function userWillAssist() {
 
-  useEffect(() => {
-    userWillAssist(eventDetail.id)
-      .then((assisQuant) => {
-        setToggleCheckBox(Boolean(assisQuant))
-      })
-  }, []);
+  }
+
+  // useEffect(() => {
+  //   userWillAssist(eventDetail.id)
+  //     .then((assisQuant) => {
+  //       setToggleCheckBox(Boolean(assisQuant))
+  //     })
+  // }, []);
 
   function handleCheckBox(newValue) {
     console.log('Entraste a handleCheckbox');
@@ -68,15 +72,16 @@ export default function EventSingle(props) {
           </View>
 
           <View style={styles.eventContainer}>
-            <CheckBox
-              disabled={false}
-              onValueChange={(newValue) => setToggleCheckBox(newValue)}
-              style={styles.iconsGuide}
-            />
-            <Text style={styles.buttonText}> Asistir </Text>
+
+            <TouchableOpacity
+              style={isPressed ? styles.buttonA : styles.buttonB}
+              value={isPressed}
+              onPress={setPress}>
+              <Text style={styles.buttonText}>Asistir</Text>
+            </TouchableOpacity>
           </View>
 
-          <Text style={styles.buttonText}> Respuesta: Asistirán {toggleCheckBox ? eventDetail.eventAssistances.length + 1 : eventDetail.eventAssistances.length} </Text>
+          <Text style={styles.buttonText}> Respuesta: Asistirán {setPress ? eventDetail.eventAssistances.length + 1 : eventDetail.eventAssistances.length} </Text>
 
         </View>
       </ScrollView>

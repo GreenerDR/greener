@@ -92,6 +92,10 @@ export function EventStack() {
         name="Event"
         component={EventScreen}
         options={{
+          headerStyle: { backgroundColor: '#1F6A39', height: 110 },
+          headerTintColor: '#fff',
+          headerTitleStyle: { fontWeight: 'bold', fontSize: 23 },
+          headerTitleAlign: 'center',
           title: 'Eventos',
         }}
       />

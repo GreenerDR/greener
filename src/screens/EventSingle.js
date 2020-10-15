@@ -81,7 +81,7 @@ export default function EventSingle(props) {
             </TouchableOpacity>
           </View>
 
-          <Text style={styles.buttonText}> Respuesta: Asistirán {setPress ? eventDetail.eventAssistances.length + 1 : eventDetail.eventAssistances.length} </Text>
+          <Text style={styles.buttonText}> Respuesta: Asistirán {isPressed ? eventDetail.eventAssistances.length + 1 : eventDetail.eventAssistances.length} </Text>
 
         </View>
       </ScrollView>

@@ -147,17 +147,15 @@ const styles = StyleSheet.create({
   },
 
   googleIcon: {
-    padding: 10,
-    margin: -5,
-    height: 60,
-    width: 60,
+    margin: 5,
+    height: 35,
+    width: 35,
     resizeMode: 'stretch',
   },
 
   facebookIcon: {
-    padding: 10,
-    height: 40,
-    width: 40,
+    height: 35,
+    width: 35,
     resizeMode: 'stretch',
   },
 
@@ -172,11 +170,11 @@ const styles = StyleSheet.create({
   },
 
   textGoogle: {
-    marginHorizontal: 20,
+    marginHorizontal: 5,
   },
 
   textFacebook: {
-    marginHorizontal: 20,
+    marginHorizontal: 15,
     color: '#ffffff',
   },
 });

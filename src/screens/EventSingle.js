@@ -11,34 +11,39 @@ import moment from 'moment'
 import 'moment/locale/es';
 import styles from '../styles/buttons';
 import styles2 from '../styles/supportS';
-import { userWillAssist } from '../utils/EventAssistance.utils';
+import { assistToEvent, getAssistancesQuantity, deleteAssistance, userWillAssist } from '../utils/EventAssistance.utils';
 
 
 export default function EventSingle(props) {
+
   const { route } = props;
   const eventDetail = route.params;
 
-  const [isPressed, setPress] = useState(false);
 
-  function userWillAssist() {
+  const [assistancesQuantity, setAssistancesQuantity] = useState(0);
+  const [assistance, setAssistance] = useState();
 
-  }
+  function togglePress(e) {
+    if (assistance) {
 
-  // useEffect(() => {
-  //   userWillAssist(eventDetail.id)
-  //     .then((assisQuant) => {
-  //       setToggleCheckBox(Boolean(assisQuant))
-  //     })
-  // }, []);
-
-  function handleCheckBox(newValue) {
-    console.log('Entraste a handleCheckbox');
-    const willAssist = userWillAssist(eventDetail.id)
-    if (newValue != willAssist) {
-      return newValue ? console.log('Soy pepe') : console.log('No soy pepe')
+      deleteAssistance(assistance.id).then(getAssistances).then(() => { setAssistance(false) })
+    } else {
+      assistToEvent(eventDetail.id).then((assistance) => { setAssistance(assistance); }).then(getAssistances)
     }
-    console.log('was');
   }
+
+  function getAssistances() {
+    return getAssistancesQuantity(eventDetail.id).then((assistancesQuantity) => { setAssistancesQuantity(assistancesQuantity) })
+  }
+
+  useEffect(() => {
+    getAssistances();
+    userWillAssist(eventDetail.id)
+      .then(([assistance]) => {
+        setAssistance(assistance);
+      })
+  }, []);
+
 
   return (
     <SafeAreaView style={{ flex: 1 }}>
@@ -74,14 +79,16 @@ export default function EventSingle(props) {
           <View style={styles.eventContainer}>
 
             <TouchableOpacity
-              style={isPressed ? styles.buttonA : styles.buttonB}
-              value={isPressed}
-              onPress={setPress}>
+              style={assistance ? styles.buttonA : styles.buttonB}
+              value={assistance}
+              onPress={togglePress}>
               <Text style={styles.buttonText}>Asistir</Text>
             </TouchableOpacity>
           </View>
 
-          <Text style={styles.buttonText}> Respuesta: Asistirán {isPressed ? eventDetail.eventAssistances.length + 1 : eventDetail.eventAssistances.length} </Text>
+          <Text style={styles.buttonText}> Respuesta: Asistirán {assistancesQuantity} </Text>
+
+          <Text style={styles.buttonText}> {assistance ? "Asistirás a este evento" : "No asistirás a este evento"} </Text>
 
         </View>
       </ScrollView>

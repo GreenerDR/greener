@@ -8,7 +8,10 @@ import {
   Image,
 } from 'react-native';
 import { Feather } from '@expo/vector-icons';
+import GuidesData from '../utils/GuidesData';
 // import styles from '../css/styles';
+
+const data = GuidesData();
 
 export default class GuideScreen extends Component {
   render() {
@@ -24,7 +27,11 @@ export default class GuideScreen extends Component {
           >
             <TouchableOpacity
               style={styles.button}
-              onPress={() => this.props.navigation.navigate('Main')}
+              onPress={() =>
+                this.props.navigation.navigate('GList', {
+                  category: 'Sembrar',
+                })
+              }
             >
               <Image
                 source={require('../../assets/sembrar.png')}
@@ -40,7 +47,11 @@ export default class GuideScreen extends Component {
             </TouchableOpacity>
             <TouchableOpacity
               style={styles.button}
-              onPress={() => this.props.navigation.navigate('Main')}
+              onPress={() =>
+                this.props.navigation.navigate('GList', {
+                  category: 'Compostar',
+                })
+              }
             >
               <Image
                 source={require('../../assets/maceta.png')}
@@ -56,7 +67,11 @@ export default class GuideScreen extends Component {
             </TouchableOpacity>
             <TouchableOpacity
               style={styles.button}
-              onPress={() => this.props.navigation.navigate('Main')}
+              onPress={() =>
+                this.props.navigation.navigate('GList', {
+                  category: 'Reciclar',
+                })
+              }
             >
               <Image
                 source={require('../../assets/water.png')}
@@ -72,7 +87,11 @@ export default class GuideScreen extends Component {
             </TouchableOpacity>
             <TouchableOpacity
               style={styles.button}
-              onPress={() => this.props.navigation.navigate('Main')}
+              onPress={() =>
+                this.props.navigation.navigate('GList', {
+                  category: 'Clasificar',
+                })
+              }
             >
               <Image
                 source={require('../../assets/clasificar.png')}
@@ -87,7 +106,17 @@ export default class GuideScreen extends Component {
               />
             </TouchableOpacity>
           </View>
-          <Text style={styles.seeAll}>Ver todo</Text>
+          <Text
+            onPress={() =>
+              this.props.navigation.navigate('GList', {
+                category: 'Todos',
+              })
+            }
+            style={styles.seeAll}
+          >
+            Ver todos
+          </Text>
+          {/* <Text style={styles.seeAll}>Ver todo</Text> */}
         </View>
       </SafeAreaView>
     );
@@ -125,7 +154,7 @@ const styles = StyleSheet.create({
     textAlign: 'right',
     marginHorizontal: 30,
     color: '#CE9F20',
-    marginBottom: 150,
+    marginBottom: 50,
   },
   iconsGuide: {
     width: 30,

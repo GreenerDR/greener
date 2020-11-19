@@ -176,7 +176,7 @@ export default function MapsScreen({ navigation }) {
 
   const renderBottomSheetContent = () => (
     <View style={styles.bottomSheet}>
-      <View >
+      <View style = {styles.burgerIconView}>
         <Touchable onPress={() => {
               sheetRef.current.snapTo(1);
             }}>
@@ -259,7 +259,7 @@ export default function MapsScreen({ navigation }) {
         </View>
         <BottomSheet
           ref={sheetRef}
-          snapPoints={[400, 0]}
+          snapPoints={[windowHeight*0.40, 0]}
           borderRadius={15}
           renderContent={renderBottomSheetContent}
           initialSnap={1}
@@ -342,7 +342,7 @@ const styles = StyleSheet.create({
   bottomSheet: {
     backgroundColor: 'white',
     width: windowWidth,
-    height: windowHeight*0.60,
+    height: windowHeight*0.40,
     padding: windowWidth*0.016,
     justifyContent: 'center',
     alignItems: 'center',
@@ -350,5 +350,8 @@ const styles = StyleSheet.create({
   imgCloseMenuList:{
     justifyContent: 'center',
     alignItems: 'center',
+  },
+  burgerIconView:{
+    minHeight: windowHeight*0.002,
   }
 });

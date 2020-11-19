@@ -7,6 +7,8 @@ import EventScreen from '../screens/EventScreen';
 import EventList from '../screens/EventList';
 import EventSingle from '../screens/EventSingle';
 import GuideScreen from '../screens/GuideScreen';
+import GuideList from '../screens/GuideList';
+import GuideSingle from '../screens/GuideSingle';
 import SettingScreen from '../screens/SettingScreen';
 import SupportScreen from '../screens/SupportScreen';
 import ProfileScreen from '../screens/ProfileScreen';
@@ -26,6 +28,8 @@ const AppNavigator = createSwitchNavigator({
   Support: { screen: SupportScreen },
   Profile: { screen: ProfileScreen },
   Location: { screen: LocationScreen },
+  GList: { screen: GuideList },
+  GSingle: { screen: GuideSingle },
 });
 
 const Navigation = createAppContainer(AppNavigator);

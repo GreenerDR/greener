@@ -4,6 +4,8 @@ import { createStackNavigator } from '@react-navigation/stack';
 
 import MainScreen from '../screens/MainScreen';
 import GuideScreen from '../screens/GuideScreen';
+import GuideList from '../screens/GuideList';
+import GuideSingle from '../screens/GuideSingle';
 import MapsScreen from '../screens/MapsScreen';
 import EventScreen from '../screens/EventScreen';
 import EventList from '../screens/EventList';
@@ -69,6 +71,28 @@ export function GuideStack() {
         component={GuideScreen}
         options={{
           title: 'Guías Ecológicas',
+        }}
+      />
+       <Stack.Screen
+        name="GList"
+        component={GuideList}
+        options={{
+          headerStyle: { backgroundColor: '#1F6A39', height: 110 },
+          headerTintColor: '#fff',
+          headerTitleStyle: { fontWeight: 'bold', fontSize: 23 },
+          headerTitleAlign: 'center',
+          title: 'Lista de Guías',
+        }}
+      />
+      <Stack.Screen
+        name="GSingle"
+        component={GuideSingle}
+        options={{
+          headerStyle: { backgroundColor: '#1F6A39', height: 110 },
+          headerTintColor: '#fff',
+          headerTitleStyle: { fontWeight: 'bold', fontSize: 23 },
+          headerTitleAlign: 'center',
+          title: 'Detalles de la guía',
         }}
       />
     </Stack.Navigator>

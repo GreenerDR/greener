@@ -3,7 +3,7 @@ import { getData } from './DataStorage';
 
 export async function userWillAssist(eventId) {
     const userData = await getData();
-    let pr = await axios.get(`http://greenerappdr.herokuapp.com/assistances/count?event=${eventId}&user=${userData.user.id}`,
+    let pr = await axios.get(`https://greenerappdr.herokuapp.com/assistances?event=${eventId}&user=${userData.user.id}`,
         {
             headers: {
                 Authorization: 'Bearer ' + userData.jwt,
@@ -12,6 +12,49 @@ export async function userWillAssist(eventId) {
 
     return pr.data
 }
+
+export async function getAssistancesQuantity(eventId) {
+    const userData = await getData();
+    let pr = await axios.get(`https://greenerappdr.herokuapp.com/assistances/count?event=${eventId}`,
+        {
+            headers: {
+                Authorization: 'Bearer ' + userData.jwt,
+            },
+        })
+
+    return pr.data
+}
+
+export async function deleteAssistance(assistanceId) {
+    const userData = await getData();
+    let pr = await axios.delete(`https://greenerappdr.herokuapp.com/assistances/${assistanceId}`,
+        {
+            headers: {
+                Authorization: 'Bearer ' + userData.jwt,
+            },
+        })
+
+    return pr.data
+}
+
+export async function assistToEvent(eventId) {
+    const userData = await getData();
+    let pr = await axios.post(`https://greenerappdr.herokuapp.com/assistances`,
+
+        {
+            user: userData.user.id,
+            event: eventId,
+        }, {
+        headers: {
+            'Authorization': 'Bearer ' + userData.jwt,
+        },
+    }
+
+    )
+
+    return pr.data
+}
+
 export async function dataEvent() {
     const userData = await getData();
     let data = {};

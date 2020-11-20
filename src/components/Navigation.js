@@ -18,18 +18,18 @@ import LocationScreen from '../screens/LocationScreen';
 const AppNavigator = createSwitchNavigator({
   Login: { screen: LoginScreen },
   Menu: { screen: Menu },
-  Main: { screen: MainScreen },
+  /*Main: { screen: MainScreen },
   Maps: { screen: MapsScreen },
   Event: { screen: EventScreen },
   EventList: { screen: EventList },
   EventSingle: { screen: EventSingle },
   Guide: { screen: GuideScreen },
-  Setting: { screen: SettingScreen },
+  //Setting: { screen: SettingScreen },
   Support: { screen: SupportScreen },
   Profile: { screen: ProfileScreen },
   Location: { screen: LocationScreen },
   GList: { screen: GuideList },
-  GSingle: { screen: GuideSingle },
+  GSingle: { screen: GuideSingle },*/
 });
 
 const Navigation = createAppContainer(AppNavigator);

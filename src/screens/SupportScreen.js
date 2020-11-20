@@ -29,7 +29,9 @@ export default function SupportScreen() {
           </Text>
           <TouchableOpacity
             style={styles.buttonS}
-            onPress={() => Linking.openURL('https://greener-support.netlify.app/')}
+            onPress={() =>
+              Linking.openURL('https://greener-support.netlify.app/')
+            }
           >
             <Text style={styles.buttonTextS}>Soporte Greener</Text>
           </TouchableOpacity>

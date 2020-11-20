@@ -16,7 +16,10 @@ import BottomSheet from 'reanimated-bottom-sheet';
 import { SimpleLineIcons } from '@expo/vector-icons';
 import { MaterialIcons } from '@expo/vector-icons';
 import NetInfo from '@react-native-community/netinfo';
-import {ScrollView, FlatList, TouchableOpacity as Touchable
+import {
+  ScrollView,
+  FlatList,
+  TouchableOpacity as Touchable,
 } from 'react-native-gesture-handler';
 
 const windowWidth = Dimensions.get('window').width;
@@ -176,19 +179,21 @@ export default function MapsScreen({ navigation }) {
 
   const renderBottomSheetContent = () => (
     <View style={styles.bottomSheet}>
-      <View style = {styles.burgerIconView}>
-        <Touchable onPress={() => {
-              sheetRef.current.snapTo(1);
-            }}>
-        <SimpleLineIcons
-                style={styles.imgCloseMenuList}
-                name="menu"
-                size={30}
-                color="green"
-              />
+      <View style={styles.burgerIconView}>
+        <Touchable
+          onPress={() => {
+            sheetRef.current.snapTo(1);
+          }}
+        >
+          <SimpleLineIcons
+            style={styles.imgCloseMenuList}
+            name="menu"
+            size={30}
+            color="green"
+          />
         </Touchable>
       </View>
-      <LocationList placesData={placesData} navigation = {navigation} />
+      <LocationList placesData={placesData} navigation={navigation} />
     </View>
   );
 
@@ -259,7 +264,7 @@ export default function MapsScreen({ navigation }) {
         </View>
         <BottomSheet
           ref={sheetRef}
-          snapPoints={[windowHeight*0.40, 0]}
+          snapPoints={[windowHeight * 0.4, 0]}
           borderRadius={15}
           renderContent={renderBottomSheetContent}
           initialSnap={1}
@@ -342,16 +347,16 @@ const styles = StyleSheet.create({
   bottomSheet: {
     backgroundColor: 'white',
     width: windowWidth,
-    height: windowHeight*0.40,
-    padding: windowWidth*0.016,
+    height: windowHeight * 0.4,
+    padding: windowWidth * 0.016,
     justifyContent: 'center',
     alignItems: 'center',
   },
-  imgCloseMenuList:{
+  imgCloseMenuList: {
     justifyContent: 'center',
     alignItems: 'center',
   },
-  burgerIconView:{
-    minHeight: windowHeight*0.002,
-  }
+  burgerIconView: {
+    minHeight: windowHeight * 0.002,
+  },
 });

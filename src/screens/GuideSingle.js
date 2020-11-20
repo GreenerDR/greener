@@ -34,18 +34,17 @@ export default function GuideSingle(props) {
             }}
           >
             <View style={styles.containerGuides}>
-            <Text style={styles.title}>{guideDetail.title}</Text>
-            <Image
-            source={{
-              uri:
-                'https://greenerappdr.herokuapp.com' +
-                guideDetail.image[0].formats.thumbnail.url,
-            }}
-            style={styles.img}
-          />
-          
-            <Text style={styles.stepText}> {guideDetail.description} </Text>
+              <Text style={styles.title}>{guideDetail.title}</Text>
+              <Image
+                source={{
+                  uri:
+                    'https://greenerappdr.herokuapp.com' +
+                    guideDetail.image[0].formats.thumbnail.url,
+                }}
+                style={styles.img}
+              />
 
+              <Text style={styles.stepText}> {guideDetail.description} </Text>
             </View>
           </View>
         </View>
@@ -55,8 +54,6 @@ export default function GuideSingle(props) {
 }
 
 const styles = StyleSheet.create({
-
-
   singleGuidePic: {
     justifyContent: 'center',
     width: 350,

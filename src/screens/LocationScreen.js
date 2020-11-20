@@ -12,6 +12,8 @@ import { FontAwesome5 } from '@expo/vector-icons';
 import { Feather } from '@expo/vector-icons';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import * as Linking from 'expo-linking';
+import LocationImages from '../components/LocationImages';
+import ImageSouceFormat from '../utils/ImageSourceFormat';
 
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
@@ -19,19 +21,26 @@ const windowHeight = Dimensions.get('window').height;
 export default function LocationScreen(props) {
   const { route } = props;
   const locationDetail = route.params;
+  const imagesArray = locationDetail.image;
+
+  function imagesForm() {
+    if (imagesArray.length > 0) {
+      return <LocationImages imagesArray={imagesArray} />;
+    } else {
+      return (
+        <Image
+          style={styles.image}
+          source={ImageSouceFormat(locationDetail.image[0].formats)}
+        />
+      );
+    }
+  }
 
   return (
     <ScrollView style={styles.mainContainer}>
       <View style={styles.viewContainer}>
         <Text style={styles.mainTitle}>{locationDetail.title}</Text>
-        <Image
-          style={styles.image}
-          source={{
-            uri:
-              'https://greenerappdr.herokuapp.com' +
-              locationDetail.image[0].formats.thumbnail.url,
-          }}
-        />
+        {imagesForm()}
         <Text style={styles.secondTitle}>{locationDetail.title}</Text>
         <Text style={styles.description}>{locationDetail.description}</Text>
         <View style={styles.section}>

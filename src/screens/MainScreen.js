@@ -19,10 +19,7 @@ export default class MainScreen extends Component {
           Aprende con nuestras guías ecólogicas
         </Text>
         <CarouselMain />
-        <TouchableOpacity
-          style={styles.button}
-          onPress={() => this.props.navigation.navigate('Event')}
-        >
+        <TouchableOpacity style={styles.button}>
           <Image
             source={require('../../assets/calendarH.png')}
             style={styles.iconsGuide}

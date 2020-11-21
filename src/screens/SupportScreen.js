@@ -1,11 +1,5 @@
 import React, { Component } from 'react';
-import {
-  Text,
-  View,
-  SafeAreaView,
-  TouchableOpacity,
-  TextInput,
-} from 'react-native';
+import { Text, View, SafeAreaView, TouchableOpacity } from 'react-native';
 // import { SupportStack } from '../components/StacksH';
 import { MaterialCommunityIcons, Feather } from '@expo/vector-icons';
 import styles from '../styles/supportS';

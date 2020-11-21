@@ -24,6 +24,9 @@ export default class CarouselMain extends Component {
           style={this.state.size}
           autoplay
           bullets
+          bulletsContainerStyle={{ marginVertical: -15}}     
+          bulletStyle={{ backgroundColor: '#949494', }}
+          chosenBulletStyle={{ backgroundColor: '#CE9F20',}}
           onAnimateNextPage={(p) => console.log(p)}
         >
           <View style={[this.state.size]}>
@@ -58,7 +61,8 @@ export default class CarouselMain extends Component {
 
 const styles = StyleSheet.create({
   image: {
-    width: width / 1,
-    height: height / 4.9,
+    width: width,
+    height: height / 4.3,
   },
+  
 });

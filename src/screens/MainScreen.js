@@ -10,6 +10,9 @@ const Filter = [
     title: 'Tiendas',
   },
 ];
+
+console.log(Filter);
+
 export default class MainScreen extends Component {
   render() {
     return (

@@ -9,7 +9,7 @@ import {
 // import { SupportStack } from '../components/StacksH';
 import { MaterialCommunityIcons, Feather } from '@expo/vector-icons';
 import styles from '../styles/supportS';
-import SupportForm from '../components/ProfileForm';
+import ProfileForm from '../components/ProfileForm';
 
 export default function ProfileScreen() {
   return (
@@ -24,7 +24,7 @@ export default function ProfileScreen() {
         >
           <Text style={styles.title}>Perfil</Text>
           <Text style={styles.subtitle}>FOTO DEL USUARIO</Text>
-          <SupportForm />
+          <ProfileForm />
         </View>
       </View>
     </SafeAreaView>

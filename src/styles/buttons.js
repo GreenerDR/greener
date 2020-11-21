@@ -94,7 +94,7 @@ export default StyleSheet.create({
     marginTop: 75,
   },
   buttonText: {
-    color: '#fff',
+    color: '#372A0B',
     fontWeight: 'bold',
     marginHorizontal: 60,
     fontSize: 18,

@@ -11,8 +11,6 @@ import {
   ScrollView,
 } from 'react-native';
 import GuidesData from '../utils/GuidesData';
-import styles2 from '../styles/supportS';
-import styles3 from '../styles/buttons';
 
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
@@ -38,6 +36,7 @@ const Item = ({ item, onPress }) => {
 };
 
 export default function GuideList({ navigation, route }) {
+
   const cat = route.params.category;
 
   const renderItem = ({ item }) => {
@@ -73,22 +72,21 @@ export default function GuideList({ navigation, route }) {
       <View style={{ flex: 1, padding: 16, backgroundColor: '#fff' }}>
         <View style={{ flex: 1, marginVertical: 30 }}>
           <Text style={styles.title}>{cat} </Text>
-          {guidesOfType && guidesOfType.length ? (
-            <>
-              <FlatList
-                style={styles.container}
-                data={guidesOfType}
-                renderItem={renderItem}
-                keyExtractor={(item) => item.id.toString()}
-              />
-              <Text style={styles.seeAll}>
-                Total de guías: {guidesOfType.length}
-              </Text>
-            </>
-          ) : (
-            <Text style={styles.empty}>No hay guías de {cat} disponibles</Text>
-          )}
-        </View>
+          { guidesOfType && guidesOfType.length ? <>
+              <ScrollView style={{ backgroundColor: '#fff' }}>
+                <FlatList
+                  style={styles.container}
+                  data={guidesOfType}
+                  renderItem={renderItem}
+                  keyExtractor={(item) => item.id.toString()}
+                />
+              </ScrollView>
+              <Text style={styles.seeAll}>Total de guías: {guidesOfType.length}</Text>
+              </>
+          : <Text style={styles.empty}>No hay guías de {cat} disponibles</Text>
+
+            }
+      </View>
       </View>
     </SafeAreaView>
   );
@@ -97,9 +95,9 @@ export default function GuideList({ navigation, route }) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    marginTop: 15,
     backgroundColor: '#fff',
     flexDirection: 'column',
-    paddingTop: 10,
     // width: windowWidth,
     // height: windowHeight,
   },
@@ -123,7 +121,7 @@ const styles = StyleSheet.create({
     height: 80,
     borderColor: '#3E721E',
     borderRadius: 8,
-    marginTop: 50,
+    marginTop: 35,
     borderWidth: 1.5,
   },
   buttonText: {
@@ -133,12 +131,12 @@ const styles = StyleSheet.create({
     marginVertical: 20,
     marginTop: -10,
     fontSize: 15,
-    //    textAlign: 'justify',
   },
   seeAll: {
     fontSize: 18,
     textAlign: 'center',
-    marginHorizontal: 30,
+    marginTop: 20,
+    marginBottom: -15,
     color: '#CE9F20',
   },
   empty: {

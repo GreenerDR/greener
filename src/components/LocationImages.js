@@ -20,7 +20,7 @@ export default function LocationImages(props) {
       <FlatList
         data={imagesArray}
         renderItem={renderItem}
-        keyExtractor={(item) => item.id}
+        keyExtractor={(item) => item.id.toString()}
         horizontal={true}
         showsHorizontalScrollIndicator={true}
       />

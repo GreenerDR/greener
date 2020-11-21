@@ -7,6 +7,7 @@ import {
   TouchableOpacity,
   View,
   Dimensions,
+  Keyboard,
 } from 'react-native';
 import MarkerData from '../utils/MarkerData';
 import MapsSearchBar from '../components/MapsSearchBar';
@@ -16,7 +17,10 @@ import BottomSheet from 'reanimated-bottom-sheet';
 import { SimpleLineIcons } from '@expo/vector-icons';
 import { MaterialIcons } from '@expo/vector-icons';
 import NetInfo from '@react-native-community/netinfo';
-import {ScrollView, FlatList, TouchableOpacity as Touchable
+import {
+  ScrollView,
+  FlatList,
+  TouchableOpacity as Touchable,
 } from 'react-native-gesture-handler';
 
 const windowWidth = Dimensions.get('window').width;
@@ -49,6 +53,16 @@ export default function MapsScreen({ navigation }) {
     title: 'Todos',
   });
   const [selectedAllLocations, setSelectedAllLocations] = useState(0);
+  const [keyboardIsOpen, setKeyboardIsOpen] = useState(false);
+  const [bottomSheetIsOpen, setBottomSheetIsOpen] = useState(false);
+
+  Keyboard.addListener('keyboardDidShow', () => {
+    setKeyboardIsOpen(true);
+    sheetRef.current.snapTo(1);
+  });
+  Keyboard.addListener('keyboardDidHide', () => {
+    setKeyboardIsOpen(false);
+  });
 
   NetInfo.fetch().then((state) => {
     setIsConected(state.isConnected);
@@ -96,16 +110,13 @@ export default function MapsScreen({ navigation }) {
       if (selectedItem.title == 'Todos') {
         setSelectedAllLocations(0);
         console.log('Todos');
-      }
-      if (selectedItem.title == 'Centros de acopio') {
+      } else if (selectedItem.title == 'Centros de acopio') {
         setSelectedAllLocations(1);
         console.log('solo centros');
-      }
-      if (selectedItem.title == 'Tiendas') {
+      } else if (selectedItem.title == 'Tiendas') {
         setSelectedAllLocations(2);
         console.log('solo tiendas');
-      }
-      if (selectedItem.title == 'Contenedores') {
+      } else if (selectedItem.title == 'Contenedores') {
         setSelectedAllLocations(3);
         console.log('solo contenedores');
       }
@@ -176,19 +187,22 @@ export default function MapsScreen({ navigation }) {
 
   const renderBottomSheetContent = () => (
     <View style={styles.bottomSheet}>
-      <View style = {styles.burgerIconView}>
-        <Touchable onPress={() => {
-              sheetRef.current.snapTo(1);
-            }}>
-        <SimpleLineIcons
-                style={styles.imgCloseMenuList}
-                name="menu"
-                size={30}
-                color="green"
-              />
+      <View style={styles.burgerIconView}>
+        <Touchable
+          onPress={() => {
+            sheetRef.current.snapTo(1);
+            setBottomSheetIsOpen(false);
+          }}
+        >
+          <SimpleLineIcons
+            style={styles.imgCloseMenuList}
+            name="menu"
+            size={30}
+            color="green"
+          />
         </Touchable>
       </View>
-      <LocationList placesData={placesData} navigation = {navigation} />
+      <LocationList placesData={placesData} navigation={navigation} />
     </View>
   );
 
@@ -243,6 +257,7 @@ export default function MapsScreen({ navigation }) {
           <TouchableOpacity
             style={styles.listButtton}
             onPress={() => {
+              setBottomSheetIsOpen(true);
               sheetRef.current.snapTo(0);
             }}
           >
@@ -259,7 +274,7 @@ export default function MapsScreen({ navigation }) {
         </View>
         <BottomSheet
           ref={sheetRef}
-          snapPoints={[windowHeight*0.40, 0]}
+          snapPoints={[windowHeight * 0.4, 0]}
           borderRadius={15}
           renderContent={renderBottomSheetContent}
           initialSnap={1}
@@ -342,16 +357,16 @@ const styles = StyleSheet.create({
   bottomSheet: {
     backgroundColor: 'white',
     width: windowWidth,
-    height: windowHeight*0.40,
-    padding: windowWidth*0.016,
+    height: windowHeight * 0.4,
+    padding: windowWidth * 0.016,
     justifyContent: 'center',
     alignItems: 'center',
   },
-  imgCloseMenuList:{
+  imgCloseMenuList: {
     justifyContent: 'center',
     alignItems: 'center',
   },
-  burgerIconView:{
-    minHeight: windowHeight*0.002,
-  }
+  burgerIconView: {
+    minHeight: windowHeight * 0.002,
+  },
 });

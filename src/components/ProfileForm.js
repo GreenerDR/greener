@@ -5,9 +5,8 @@ import styles from '../styles/form';
 import { getData } from '../utils/DataStorage';
 
 export default function ProfileForm() {
-  //const [userData, setUserData] = useState('Usuario');
-  const [userName, setUserName] = useState('Nombre usuario');
-  const [userEmail, setUserEmail] = useState('Usuario');
+  const [userName, setUserName] = useState('Nombre del usuario');
+  const [userEmail, setUserEmail] = useState('Correo del usuario');
 
   useEffect(() => {
     getData().then((userData) => {

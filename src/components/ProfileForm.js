@@ -5,17 +5,21 @@ import styles from '../styles/form';
 import { getData } from '../utils/DataStorage';
 
 export default function ProfileForm() {
-  const [userData, setUserData] = useState();
+  //const [userData, setUserData] = useState('Usuario');
+  const [userName, setUserName] = useState('Nombre usuario');
+  const [userEmail, setUserEmail] = useState('Usuario');
+
   useEffect(() => {
     getData().then((userData) => {
-      //console.log(userData);
-      setUserData(userData);
+      setUserName(userData.user.name);
+      setUserEmail(userData.user.email);
     });
   }, []);
 
-  return(
+  return (
     <View style={styles.container}>
-      <Text style={styles.label}>{userData.user.email}</Text>
+      <Text style={styles.label}>Tu nombre: {userName}</Text>
+      <Text style={styles.label}>Tu correo: {userEmail}</Text>
     </View>
   );
 }

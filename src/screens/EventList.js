@@ -8,7 +8,6 @@ import {
     Image,
     FlatList,
     Dimensions,
-    ScrollView
 } from 'react-native';
 import moment from 'moment'
 import 'moment/locale/es';
@@ -19,22 +18,28 @@ import styles3 from '../styles/buttons';
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
 
+
+
 const Item = ({ item, onPress }) => {
 
     moment.locale('es');
 
+    const imagesArray = item.images;
 
+    function imagesForm() {
+        if (imagesArray.length > 1) {
+            return <LocationImages imagesArray={imagesArray} />;
+        } else {
+            return (
+                <Image style={styles.image} source={{ uri: imagesArray[0].url }} />
+            );
+        }
+    }
     return (
+
         <TouchableOpacity onPress={onPress} style={[styles.item]}>
             <View style={styles.listItemInfo}>
-                <Image
-                    style={styles.image}
-                    source={{
-                        uri:
-                            'https://greenerappdr.herokuapp.com' +
-                            item.image[0].formats.thumbnail.url,
-                    }}
-                />
+                {imagesForm()}
                 <View style={styles.titleAndAddressView}>
                     <Text style={styles3.eventButtonText}>{item.title}</Text>
                     <Text style={styles3.eventButtonDate}>{moment(item.datetime).locale('es').format('llll')}</Text>

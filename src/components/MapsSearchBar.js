@@ -29,7 +29,6 @@ export default function MapsSearchBar(props) {
         ) {
           setInputError(false);
           setPlaceholderText('¡Busca aquí!');
-          console.log(placesData[i].title);
           setSelectedItem({
             id: '0',
             title: 'Todos',
@@ -46,20 +45,17 @@ export default function MapsSearchBar(props) {
           );
           break;
         } else {
-          console.log('No encontrado');
           setInputError(true);
           setPlaceholderText('No encontrado.');
         }
       }
     } else {
-      console.log('Vacio');
       setInputError(true);
       setPlaceholderText('Rellene el campo.');
     }
   };
   const deletePlace = () => {
     setSearchData('');
-    console.log('Borrar todo', searchData, 0 + 1);
   };
 
   return (

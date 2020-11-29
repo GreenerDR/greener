@@ -1,7 +1,6 @@
 import axios from 'axios';
 import { getData } from '../utils/DataStorage';
 import { Alert } from 'react-native';
-let marker;
 export default async function dataMarker() {
   const userData = await getData();
   let data = {};

@@ -1,15 +1,16 @@
 import React from 'react';
-import { StyleSheet, FlatList, Image } from 'react-native';
-import ImageSouceFormat from '../utils/ImageSourceFormat';
+import { StyleSheet, FlatList, Image, Dimensions } from 'react-native';
+const windowWidth = Dimensions.get('window').width;
+const windowHeight = Dimensions.get('window').height;
 
 export default function LocationImages(props) {
   const { imagesArray } = props;
 
-  const Item = ({ item: { formats } }) => {
-    const source = ImageSouceFormat(formats);
+  const Item = (item) => {
+    const source = item.item.url;
     return (
       <>
-        <Image style={styles.image} source={source} />
+        <Image style={styles.image} source={{ uri: source }} />
       </>
     );
   };
@@ -38,8 +39,8 @@ const styles = StyleSheet.create({
     fontSize: 32,
   },
   image: {
-    height: 350,
-    width: 350,
+    width: windowWidth * 0.8,
+    height: windowWidth * 0.8,
     marginRight: 10,
   },
 });

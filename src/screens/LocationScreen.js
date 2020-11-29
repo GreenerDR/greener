@@ -13,7 +13,6 @@ import { Feather } from '@expo/vector-icons';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import * as Linking from 'expo-linking';
 import LocationImages from '../components/LocationImages';
-import ImageSouceFormat from '../utils/ImageSourceFormat';
 
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
@@ -21,7 +20,7 @@ const windowHeight = Dimensions.get('window').height;
 export default function LocationScreen(props) {
   const { route } = props;
   const locationDetail = route.params;
-  const imagesArray = locationDetail.image;
+  const imagesArray = locationDetail.images;
 
   function imagesForm() {
     if (imagesArray.length > 1) {
@@ -29,10 +28,7 @@ export default function LocationScreen(props) {
     } else {
       return (
         <View style={styles.imageContainer}>
-          <Image
-            style={styles.image}
-            source={ImageSouceFormat(locationDetail.image[0].formats)}
-          />
+          <Image style={styles.image} source={{ uri: imagesArray[0].url }} />
         </View>
       );
     }
@@ -131,8 +127,8 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   image: {
-    width: windowWidth * 0.6,
-    height: windowWidth * 0.6,
+    width: windowWidth * 0.8,
+    height: windowWidth * 0.8,
   },
   section: {
     marginTop: windowHeight * 0.02,

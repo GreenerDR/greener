@@ -6,18 +6,17 @@ import ImageSouceFormat from '../utils/ImageSourceFormat';
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
 
-const Item = ({
-  item,
-  onPress,
-  item: {
-    image: [{ formats }],
-  },
-}) => {
-  const source = ImageSouceFormat(formats);
+const Item = ({ item, onPress }) => {
+  const source = String(item.images[0].url);
   return (
     <TouchableOpacity onPress={onPress} style={[styles.item]}>
       <View style={styles.listItemInfo}>
-        <Image style={styles.image} source={source} />
+        <Image
+          style={styles.image}
+          source={{
+            uri: source,
+          }}
+        />
         <View style={styles.titleAndAddressView}>
           <Text style={styles.title}>{item.title}</Text>
           <Text style={styles.address}>{item.address}</Text>

@@ -114,13 +114,13 @@ const styles = StyleSheet.create({
     paddingTop: windowHeight * 0.02,
     color: '#372a0c',
     fontSize: 20,
-    padding: windowWidth * 0.01,
+    paddingLeft: windowWidth * 0.03,
   },
   description: {
     color: '#6da14b',
     marginRight: windowWidth * 0.01,
     fontSize: 15,
-    padding: windowWidth * 0.01,
+    padding: windowWidth * 0.03,
   },
   imageContainer: {
     justifyContent: 'center',

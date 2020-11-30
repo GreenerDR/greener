@@ -18,15 +18,15 @@ export default class CarouselMain extends Component {
 
   render() {
     return (
-      <View style={{ flex: 1 }} onLayout={this._onLayoutDidChange}>
+      <View style={{ flex: 1, backgroundColor: '#1F6A39'}} onLayout={this._onLayoutDidChange}>
         <Carousel
           delay={4500}
           style={this.state.size}
           autoplay
           bullets
-          bulletsContainerStyle={{ marginVertical: -15}}     
+          bulletsContainerStyle={{ marginVertical: -5}}     
           bulletStyle={{ backgroundColor: '#949494', }}
-          chosenBulletStyle={{ backgroundColor: '#CE9F20',}}
+          chosenBulletStyle={{ backgroundColor: '#fff',}}
           onAnimateNextPage={(p) => console.log(p)}
         >
           <View style={[this.state.size]}>
@@ -64,5 +64,4 @@ const styles = StyleSheet.create({
     width: width,
     height: height / 4.3,
   },
-  
 });

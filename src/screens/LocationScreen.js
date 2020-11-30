@@ -12,6 +12,7 @@ import { FontAwesome5 } from '@expo/vector-icons';
 import { Feather } from '@expo/vector-icons';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import * as Linking from 'expo-linking';
+import LocationImages from '../components/LocationImages';
 
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
@@ -19,19 +20,25 @@ const windowHeight = Dimensions.get('window').height;
 export default function LocationScreen(props) {
   const { route } = props;
   const locationDetail = route.params;
+  const imagesArray = locationDetail.images;
+
+  function imagesForm() {
+    if (imagesArray.length > 1) {
+      return <LocationImages imagesArray={imagesArray} />;
+    } else {
+      return (
+        <View style={styles.imageContainer}>
+          <Image style={styles.image} source={{ uri: imagesArray[0].url }} />
+        </View>
+      );
+    }
+  }
 
   return (
     <ScrollView style={styles.mainContainer}>
       <View style={styles.viewContainer}>
         <Text style={styles.mainTitle}>{locationDetail.title}</Text>
-        <Image
-          style={styles.image}
-          source={{
-            uri:
-              'https://greenerappdr.herokuapp.com' +
-              locationDetail.image[0].formats.thumbnail.url,
-          }}
-        />
+        {imagesForm()}
         <Text style={styles.secondTitle}>{locationDetail.title}</Text>
         <Text style={styles.description}>{locationDetail.description}</Text>
         <View style={styles.section}>
@@ -94,28 +101,34 @@ export default function LocationScreen(props) {
 const styles = StyleSheet.create({
   mainContainer: {
     backgroundColor: '#fff',
+    flex: 1,
   },
   mainTitle: {
     color: '#372a0c',
     fontSize: 30,
     marginTop: windowHeight * 0.025,
-    padding: windowWidth * 0.01,
+    padding: windowWidth * 0.02,
     paddingBottom: windowHeight * 0.03,
   },
   secondTitle: {
     paddingTop: windowHeight * 0.02,
     color: '#372a0c',
     fontSize: 20,
+    paddingLeft: windowWidth * 0.03,
   },
   description: {
-    color: '#8cc63f',
-    marginLeft: windowWidth * 0.01,
+    color: '#6da14b',
     marginRight: windowWidth * 0.01,
     fontSize: 15,
+    padding: windowWidth * 0.03,
+  },
+  imageContainer: {
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   image: {
-    width: 200,
-    height: 200,
+    width: windowWidth * 0.8,
+    height: windowWidth * 0.8,
   },
   section: {
     marginTop: windowHeight * 0.02,
@@ -123,8 +136,6 @@ const styles = StyleSheet.create({
   detailsSection: {
     flexDirection: 'row',
     alignItems: 'center',
-    borderColor: '#3e721e',
-    borderWidth: 4,
     width: windowWidth,
   },
   redirectText: {

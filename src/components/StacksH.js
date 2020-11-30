@@ -95,7 +95,7 @@ export function GuideStack() {
           title: 'Guías Ecológicas',
         }}
       />
-       <Stack.Screen
+      <Stack.Screen
         name="GList"
         component={GuideList}
         options={{
@@ -188,6 +188,10 @@ export function MapStack() {
         name="Map"
         component={MapsScreen}
         options={{
+          headerStyle: { backgroundColor: '#1F6A39', height: 110 },
+          headerTintColor: '#fff',
+          headerTitleStyle: { fontWeight: 'bold', fontSize: 23 },
+          headerTitleAlign: 'center',
           title: 'Mapa',
         }}
       />
@@ -195,7 +199,11 @@ export function MapStack() {
         name="Location"
         component={LocationScreen}
         options={{
-          title: 'Detalles del lugar',
+          headerStyle: { backgroundColor: '#1F6A39', height: 110 },
+          headerTintColor: '#fff',
+          headerTitleStyle: { fontWeight: 'bold', fontSize: 23 },
+          headerTitleAlign: 'center',
+          title: 'Locación',
         }}
       />
     </Stack.Navigator>

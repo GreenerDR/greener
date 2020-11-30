@@ -3,7 +3,8 @@ import { View, StyleSheet, Text, Image, TouchableOpacity } from 'react-native';
 
 import * as Google from 'expo-google-app-auth';
 import * as Facebook from 'expo-facebook';
-import { logIn } from '../utils/SignIn';
+import { logIn, isLoggedIn } from '../utils/SessionController';
+import { navigationRef } from '../utils/RootNavigation';
 
 const IOS_CLIENT_ID =
   '689620397216-uittnoqmbtteqaqud3v4ll1ngojcubqn.apps.googleusercontent.com';
@@ -12,6 +13,12 @@ const ANDROID_CLIENT_ID =
 const APP_ID = '1652493498261994';
 
 export default class LoginScreen extends Component {
+  componentDidMount() {
+    isLoggedIn().then((res) =>
+      res ? this.props.navigation.navigate('Menu') : null,
+    );
+    navigationRef.current = this.props.navigation;
+  }
   storeSession = async (userData) => {
     await logIn(userData);
     this.props.navigation.navigate('Menu');

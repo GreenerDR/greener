@@ -45,6 +45,7 @@ const DATA = [
     title: 'Contenedores',
   },
 ];
+console.log(DATA);
 
 export default function MapsScreen({ navigation }) {
   const [isConected, setIsConected] = useState();

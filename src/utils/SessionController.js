@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { setData } from '../utils/DataStorage';
+import { setData, getData } from '../utils/DataStorage';
 
 export function signIn({ email, name }) {
   axios
@@ -35,6 +35,15 @@ export function logIn(userData) {
       signIn(userData);
       console.log('An error occurred:', error);
     });
+}
+
+export async function isLoggedIn() {
+  const data = await getData();
+  if (data) {
+    console.log(data);
+    return true;
+  }
+  return false;
 }
 
 export default { signIn, logIn };

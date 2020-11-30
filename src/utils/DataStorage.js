@@ -4,7 +4,16 @@ export const setData = async (value) => {
   try {
     const jsonValue = JSON.stringify(value);
     await AsyncStorage.setItem('userData', jsonValue);
-    console.log('Data stored successfuly');
+    console.log('Session data stored successfuly');
+  } catch (e) {
+    console.log(e);
+  }
+};
+
+export const deleteData = async () => {
+  try {
+    await AsyncStorage.removeItem('userData');
+    console.log('Session data deleted successfuly');
   } catch (e) {
     console.log(e);
   }
@@ -19,4 +28,4 @@ export const getData = async () => {
   }
 };
 
-export default { setData, getData };
+export default { setData, getData, deleteData };

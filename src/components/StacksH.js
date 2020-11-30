@@ -49,6 +49,28 @@ export const MainStack = () => {
           ),
         }}
       />
+      <Stack.Screen
+        name="EventList"
+        component={EventList}
+        options={{
+          headerStyle: { backgroundColor: '#1F6A39', height: 110 },
+          headerTintColor: '#fff',
+          headerTitleStyle: { fontWeight: 'bold', fontSize: 23 },
+          headerTitleAlign: 'center',
+          title: 'Lista de Eventos',
+        }}
+      />
+      <Stack.Screen
+        name="GList"
+        component={GuideList}
+        options={{
+          headerStyle: { backgroundColor: '#1F6A39', height: 110 },
+          headerTintColor: '#fff',
+          headerTitleStyle: { fontWeight: 'bold', fontSize: 23 },
+          headerTitleAlign: 'center',
+          title: 'Lista de guías',
+        }}
+      />
     </Stack.Navigator>
   );
 };

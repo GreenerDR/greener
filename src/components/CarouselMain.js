@@ -3,6 +3,7 @@ import { View, Dimensions, Image, StyleSheet } from 'react-native';
 import Carousel from 'react-native-looped-carousel';
 
 const { width, height } = Dimensions.get('window');
+console.warn = () => {};
 
 export default class CarouselMain extends Component {
   constructor(props) {
@@ -18,7 +19,10 @@ export default class CarouselMain extends Component {
 
   render() {
     return (
-      <View style={{ flex: 1, backgroundColor: '#1F6A39'}} onLayout={this._onLayoutDidChange}>
+      <View
+        style={{ flex: 1, backgroundColor: '#1F6A39' }}
+        onLayout={this._onLayoutDidChange}
+      >
         <Carousel
           delay={4500}
           style={this.state.size}

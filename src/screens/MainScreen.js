@@ -4,15 +4,6 @@ import { Feather, SimpleLineIcons } from '@expo/vector-icons';
 import CarouselMain from '../components/CarouselMain';
 import styles from '../styles/main';
 
-const Filter = [
-  {
-    id: '2',
-    title: 'Tiendas',
-  },
-];
-
-console.log(Filter);
-
 export default class MainScreen extends Component {
   render() {
     return (
@@ -46,7 +37,7 @@ export default class MainScreen extends Component {
         </TouchableOpacity>
         <TouchableOpacity
           style={styles.cardView}
-          onPress={() => this.props.navigation.navigate('Maps', Filter)}
+          onPress={() => this.props.navigation.navigate('Maps')}
         >
           <Image
             source={require('../../assets/ecoShop.jpg')}

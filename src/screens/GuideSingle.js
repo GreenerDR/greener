@@ -2,10 +2,8 @@ import React from 'react';
 import {
   Text,
   View,
-  StyleSheet,
   SafeAreaView,
   TouchableOpacity,
-  Dimensions,
   Image,
   ScrollView,
   Linking,
@@ -22,12 +20,10 @@ export default function GuideSingle(props) {
   return (
     <SafeAreaView style={{ flex: 1 }}>
       <ScrollView style={{ backgroundColor: '#fff' }}>
-        {/* <Image
-            source={require('../../assets/backgroundGuide.png')}
-            style={styles.backgroundGuides}
-          /> */}
         <Image
-          source={{ uri: 'https://mocah.org/uploads/posts/585324-atmosphere-bio.jpg' }}
+          source={{
+            uri: 'https://mocah.org/uploads/posts/585324-atmosphere-bio.jpg',
+          }}
           style={styles.backgroundGuides}
         />
         <View
@@ -48,16 +44,14 @@ export default function GuideSingle(props) {
                 <Text style={styles.title}>{guideDetail.title}</Text>
                 <Image
                   source={{
-                    uri:
-                      'https://greenerappdr.herokuapp.com' +
-                      guideDetail.image[0].formats.thumbnail.url,
+                    uri: guideDetail.images[0].url,
                   }}
                   style={styles.img}
                 />
               </View>
               <Text style={styles.stepText}>{guideDetail.description}</Text>
               <View>
-          <TouchableOpacity
+                <TouchableOpacity
                   onPress={() => Linking.openURL(guideDetail.referenceURL)}
                 >
                   <View>

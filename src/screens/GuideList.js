@@ -22,9 +22,7 @@ const Item = ({ item, onPress }) => {
         <Image
           style={styles.iconsGuide}
           source={{
-            uri:
-              'https://greenerappdr.herokuapp.com' +
-              item.image[0].formats.thumbnail.url,
+            uri: item.images[0].url,
           }}
         />
         <View style={styles.titleAndAddressView}>
@@ -36,7 +34,6 @@ const Item = ({ item, onPress }) => {
 };
 
 export default function GuideList({ navigation, route }) {
-
   const cat = route.params.category;
 
   const renderItem = ({ item }) => {
@@ -84,8 +81,7 @@ export default function GuideList({ navigation, route }) {
               <Text style={styles.seeAll}>Total de guías: {guidesOfType.length}</Text>
               </>
           : <Text style={styles.empty}>No hay guías de {cat} disponibles</Text>
-
-            }
+          }
       </View>
       </View>
     </SafeAreaView>

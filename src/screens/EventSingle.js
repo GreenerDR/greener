@@ -22,6 +22,19 @@ export default function EventSingle(props) {
   const { route } = props;
   const eventDetail = route.params;
 
+  const imagesArray = eventDetail.images;
+
+  function imagesForm() {
+    if (imagesArray.length > 1) {
+      return <LocationImages imagesArray={imagesArray} />;
+    } else {
+      return (
+        <Image style={styles.singleEventPic} source={{ uri: imagesArray[0].url }} />
+      );
+    }
+  }
+
+
   const [assistancesQuantity, setAssistancesQuantity] = useState(0);
   const [assistance, setAssistance] = useState();
 
@@ -61,17 +74,8 @@ export default function EventSingle(props) {
       <ScrollView style={{ flex: 1, padding: 16, backgroundColor: '#fff' }}>
         <View style={{ flex: 1, alignItems: 'center', marginVertical: 30 }}>
           <Text style={styles2.title}>{eventDetail.title}</Text>
-          <Image
-            source={{
-              uri:
-                'https://greenerappdr.herokuapp.com' +
-                eventDetail.image[0].formats.thumbnail.url,
-            }}
-            style={styles.singleEventPic}
-          />
-          <Text style={styles2.subtitle}>
-            {moment(eventDetail.datetime).locale('es').format('LLLL')}
-          </Text>
+          {imagesForm()}
+          <Text style={styles2.subtitle}>{moment(eventDetail.datetime).locale('es').format('LLLL')}</Text>
 
           <View style={styles.eventContainer}>
             <Image

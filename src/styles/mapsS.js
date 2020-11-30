@@ -76,7 +76,7 @@ export default StyleSheet.create({
   bottomSheet: {
     backgroundColor: 'white',
     width: windowWidth,
-    height: windowHeight * 0.5,
+    height: windowHeight * 0.4,
     padding: windowWidth * 0.016,
     justifyContent: 'center',
     alignItems: 'center',
@@ -84,5 +84,8 @@ export default StyleSheet.create({
   imgCloseMenuList: {
     justifyContent: 'center',
     alignItems: 'center',
+  },
+  burgerIconView: {
+    minHeight: windowHeight * 0.002,
   },
 });

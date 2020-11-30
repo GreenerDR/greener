@@ -86,11 +86,16 @@ export default class EventScreen extends Component {
               />
             </TouchableOpacity>
           </View>
-          <Text onPress={() =>
-            this.props.navigation.navigate('EventList', {
-              category: 'Todos',
-            })
-          } style={styles.seeAllEvent}>Ver todos</Text>
+          <Text
+            onPress={() =>
+              this.props.navigation.navigate('EventList', {
+                category: 'Todos',
+              })
+            }
+            style={styles.seeAllEvent}
+          >
+            Ver todos
+          </Text>
         </View>
       </SafeAreaView>
     );

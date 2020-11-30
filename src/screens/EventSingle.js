@@ -7,43 +7,54 @@ import {
   ScrollView,
   TouchableOpacity,
 } from 'react-native';
-import moment from 'moment'
+import moment from 'moment';
 import 'moment/locale/es';
 import styles from '../styles/buttons';
 import styles2 from '../styles/supportS';
-import { assistToEvent, getAssistancesQuantity, deleteAssistance, userWillAssist } from '../utils/EventAssistance.utils';
-
+import {
+  assistToEvent,
+  getAssistancesQuantity,
+  deleteAssistance,
+  userWillAssist,
+} from '../utils/EventAssistance.utils';
 
 export default function EventSingle(props) {
-
   const { route } = props;
   const eventDetail = route.params;
-
 
   const [assistancesQuantity, setAssistancesQuantity] = useState(0);
   const [assistance, setAssistance] = useState();
 
   function togglePress(e) {
     if (assistance) {
-
-      deleteAssistance(assistance.id).then(getAssistances).then(() => { setAssistance(false) })
+      deleteAssistance(assistance.id)
+        .then(getAssistances)
+        .then(() => {
+          setAssistance(false);
+        });
     } else {
-      assistToEvent(eventDetail.id).then((assistance) => { setAssistance(assistance); }).then(getAssistances)
+      assistToEvent(eventDetail.id)
+        .then((assistance) => {
+          setAssistance(assistance);
+        })
+        .then(getAssistances);
     }
   }
 
   function getAssistances() {
-    return getAssistancesQuantity(eventDetail.id).then((assistancesQuantity) => { setAssistancesQuantity(assistancesQuantity) })
+    return getAssistancesQuantity(eventDetail.id).then(
+      (assistancesQuantity) => {
+        setAssistancesQuantity(assistancesQuantity);
+      },
+    );
   }
 
   useEffect(() => {
     getAssistances();
-    userWillAssist(eventDetail.id)
-      .then(([assistance]) => {
-        setAssistance(assistance);
-      })
+    userWillAssist(eventDetail.id).then(([assistance]) => {
+      setAssistance(assistance);
+    });
   }, []);
-
 
   return (
     <SafeAreaView style={{ flex: 1 }}>
@@ -58,7 +69,9 @@ export default function EventSingle(props) {
             }}
             style={styles.singleEventPic}
           />
-          <Text style={styles2.subtitle}>{moment(eventDetail.datetime).locale('es').format('LLLL')}</Text>
+          <Text style={styles2.subtitle}>
+            {moment(eventDetail.datetime).locale('es').format('LLLL')}
+          </Text>
 
           <View style={styles.eventContainer}>
             <Image
@@ -73,23 +86,33 @@ export default function EventSingle(props) {
               source={require('../../assets/webE.png')}
               style={styles.iconsGuide}
             />
-            <Text style={styles.buttonText}> Organizado por {eventDetail.eventRepresentative.name} </Text>
+            <Text style={styles.buttonText}>
+              {' '}
+              Organizado por {eventDetail.eventRepresentative.name}{' '}
+            </Text>
           </View>
 
           <View style={styles.eventContainer}>
-
             <TouchableOpacity
               style={assistance ? styles.buttonA : styles.buttonB}
               value={assistance}
-              onPress={togglePress}>
+              onPress={togglePress}
+            >
               <Text style={styles.buttonText}>Asistir</Text>
             </TouchableOpacity>
           </View>
 
-          <Text style={styles.buttonText}> Respuesta: Asistirán {assistancesQuantity} </Text>
+          <Text style={styles.buttonText}>
+            {' '}
+            Respuesta: Asistirán {assistancesQuantity}{' '}
+          </Text>
 
-          <Text style={styles.buttonText}> {assistance ? "Asistirás a este evento" : "No asistirás a este evento"} </Text>
-
+          <Text style={styles.buttonText}>
+            {' '}
+            {assistance
+              ? 'Asistirás a este evento'
+              : 'No asistirás a este evento'}{' '}
+          </Text>
         </View>
       </ScrollView>
     </SafeAreaView>

@@ -20,7 +20,7 @@ export default StyleSheet.create({
     alignItems: 'center',
     alignSelf: 'center',
     width: windowWidth * 0.65,
-    height: windowWidth * 0.10,
+    height: windowWidth * 0.1,
     borderColor: '#3E721E',
     borderRadius: 8,
     borderWidth: 1.5,
@@ -31,7 +31,7 @@ export default StyleSheet.create({
     alignItems: 'center',
     alignSelf: 'center',
     width: windowWidth * 0.65,
-    height: windowWidth * 0.10,
+    height: windowWidth * 0.1,
     borderColor: '#3E721E',
     borderRadius: 8,
     borderWidth: 1.5,
@@ -116,7 +116,7 @@ export default StyleSheet.create({
     textAlign: 'right',
     marginHorizontal: 30,
     color: '#CE9F20',
-    marginVertical: windowHeight*0.18,
+    marginVertical: windowHeight * 0.18,
     //marginBottom: 220,
   },
   iconsGuide: {
@@ -154,5 +154,5 @@ export default StyleSheet.create({
   separator: {
     height: 1,
     backgroundColor: '#CED0CE',
-  }
+  },
 });

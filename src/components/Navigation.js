@@ -24,7 +24,7 @@ const AppNavigator = createSwitchNavigator({
   EventList: { screen: EventList },
   EventSingle: { screen: EventSingle },
   Guide: { screen: GuideScreen },
-  Setting: { screen: SettingScreen },
+  //Setting: { screen: SettingScreen },
   Support: { screen: SupportScreen },
   Profile: { screen: ProfileScreen },
   Location: { screen: LocationScreen },

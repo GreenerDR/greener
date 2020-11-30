@@ -8,8 +8,15 @@ import {
 } from 'react-native';
 import { Feather } from '@expo/vector-icons';
 import styles from '../styles/buttons';
+import { navigate } from '../utils/RootNavigation';
+import { deleteData } from '../utils/DataStorage';
 
 export default class SettingScreen extends Component {
+  signOut = () => {
+    deleteData().then(() => {
+      navigate('Login');
+    });
+  };
   render() {
     return (
       <SafeAreaView style={{ flex: 1 }}>
@@ -63,7 +70,7 @@ export default class SettingScreen extends Component {
             </TouchableOpacity>
             <TouchableOpacity
               style={styles.containerButton}
-              onPress={() => this.props.navigation.navigate('Login')}
+              onPress={this.signOut}
             >
               <Image
                 source={require('../../assets/cerrarS.png')}

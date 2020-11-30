@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Controller, useForm } from 'react-hook-form';
-import { View, Text, Button, TextInput, TouchableOpacity } from 'react-native';
+import { View, Text, TouchableOpacity, Image } from 'react-native';
 import styles from '../styles/form';
 import { getData } from '../utils/DataStorage';
 
@@ -17,8 +16,12 @@ export default function ProfileForm() {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.label}>Tu nombre: {userName}</Text>
-      <Text style={styles.label}>Tu correo: {userEmail}</Text>
+      <Image
+        source={require('../../assets/profile.png')}
+        style={styles.Profileimage}
+      />
+      <Text style={styles.label}>Nombre: {userName}</Text>
+      <Text style={styles.label}>Correo: {userEmail}</Text>
     </View>
   );
 }

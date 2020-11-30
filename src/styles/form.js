@@ -1,36 +1,20 @@
-import { StyleSheet } from 'react-native';
+import { StyleSheet, Dimensions } from 'react-native';
+const { width, height } = Dimensions.get('window');
 
 export default StyleSheet.create({
   label: {
-    marginLeft: 10,
-    color: '#372A0B',
-    fontWeight: 'bold',
-  },
-  button: {
-    marginTop: 20,
-    color: 'white',
-    backgroundColor: '#1F6A39',
-    height: 40,
-    borderRadius: 6,
-    width: 305,
-    marginHorizontal: 10,
-  },
-  buttonP: {
-    marginTop: 20,
-    color: 'white',
-    backgroundColor: '#1F6A39',
-    height: 40,
-    borderRadius: 6,
-    width: 130,
-    marginHorizontal: 10,
-  },
-  buttonText1: {
+    width: width / 1.2,
+    height: height / 16,
     color: '#fff',
     fontWeight: 'bold',
-    marginHorizontal: 10,
-    marginTop: 6,
-    fontSize: 18,
-    textAlign: 'center',
+    marginTop: 10,
+    padding: 15,
+    fontSize: 15,
+    borderWidth: 1.5,
+    borderRadius: 8,
+    borderColor: '#372A0B',
+    backgroundColor: '#3E721E',
+    elevation: 1,
   },
   container: {
     alignSelf: 'center',
@@ -44,5 +28,12 @@ export default StyleSheet.create({
     marginVertical: 20,
     borderBottomWidth: 2,
     borderBottomColor: '#372A0B',
+  },
+  Profileimage: {
+    width: width / 3,
+    height: height / 6,
+    alignSelf: 'center',
+    marginBottom: 30,
+    marginTop: 30,
   },
 });

@@ -23,7 +23,6 @@ export default function ProfileScreen() {
           }}
         >
           <Text style={styles.title}>Perfil</Text>
-          <Text style={styles.subtitle}>FOTO DEL USUARIO</Text>
           <ProfileForm />
         </View>
       </View>

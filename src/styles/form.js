@@ -4,7 +4,7 @@ const { width, height } = Dimensions.get('window');
 export default StyleSheet.create({
   label: {
     width: width / 1.2,
-    height: height / 16,
+    height: height / 14,
     color: '#fff',
     fontWeight: 'bold',
     marginTop: 10,

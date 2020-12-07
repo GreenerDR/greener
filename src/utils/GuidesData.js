@@ -16,7 +16,7 @@ export default async function dataGuide() {
     );
     data = response.data;
   } catch (error) {
-    console.log('An error occurred:', error.response);
+    //console.log('An error occurred:', error.response);
   }
   return data;
 }

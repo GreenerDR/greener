@@ -47,6 +47,9 @@ const DATA = [
 ];
 
 export default function MapsScreen({ navigation }) {
+  const sheetRef = React.useRef(null);
+  const fall = new Animated.Value(1);
+  const Map = useRef(null);
   const [isConected, setIsConected] = useState();
   const [placesData, setPlacesData] = useState([]);
   const [selectedItem, setSelectedItem] = useState({
@@ -100,13 +103,18 @@ export default function MapsScreen({ navigation }) {
   );
 
   useEffect(() => {
-    MarkerData().then((Marker) => {
-      setPlacesData(Marker);
-    });
+    let mounted = true;
+    if (mounted) {
+      MarkerData().then((Marker) => {
+        setPlacesData(Marker);
+      });
+    }
+    return () => (mounted = false);
   }, []);
 
   useEffect(
     function () {
+      let mounted = true;
       if (selectedItem.title == 'Todos') {
         setSelectedAllLocations(0);
       } else if (selectedItem.title == 'Centros de acopio') {
@@ -116,9 +124,11 @@ export default function MapsScreen({ navigation }) {
       } else if (selectedItem.title == 'Contenedores') {
         setSelectedAllLocations(3);
       }
+      return () => (mounted = false);
     },
     [selectedItem],
   );
+
   // pasar a funcion util
   const locationCustomPin = (item) => {
     if (item.locationType.id == 1) {
@@ -177,10 +187,6 @@ export default function MapsScreen({ navigation }) {
     },
     [placesData, locationCustomPin],
   );
-
-  const sheetRef = React.useRef(null);
-  const Map = useRef(null);
-
   const renderBottomSheetContent = () => (
     <View style={styles.bottomSheet}>
       <View style={styles.burgerIconView}>
@@ -273,7 +279,9 @@ export default function MapsScreen({ navigation }) {
           snapPoints={[windowHeight * 0.4, 0]}
           borderRadius={15}
           renderContent={renderBottomSheetContent}
+          callbackNode={fall}
           initialSnap={1}
+          enabledGestureInteraction={true}
         />
       </View>
     );

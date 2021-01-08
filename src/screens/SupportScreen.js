@@ -70,7 +70,9 @@ export default function SupportScreen() {
 
             <TouchableOpacity
               style={styles.button}
-              onPress={() => this.props.navigation.navigate('Main')}
+              onPress={() =>
+                Linking.openURL('https://github.com/GreenerDR/greener/wiki')
+              }
             >
               <Text style={styles.buttonText}>Manual de usuario</Text>
               <Feather

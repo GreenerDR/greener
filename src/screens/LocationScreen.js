@@ -21,7 +21,6 @@ export default function LocationScreen(props) {
   const { route } = props;
   const locationDetail = route.params;
   const imagesArray = locationDetail.images;
-
   function imagesForm() {
     if (imagesArray.length > 1) {
       return <LocationImages imagesArray={imagesArray} />;
@@ -40,6 +39,7 @@ export default function LocationScreen(props) {
         <Text style={styles.mainTitle}>{locationDetail.title}</Text>
         {imagesForm()}
         <Text style={styles.secondTitle}>{locationDetail.title}</Text>
+        <Text style={styles.type}>{locationDetail.locationType.type}</Text>
         <Text style={styles.description}>{locationDetail.description}</Text>
         <View style={styles.section}>
           <View style={styles.detailsSection}>
@@ -148,5 +148,13 @@ const styles = StyleSheet.create({
   sectionIcon: {
     width: windowWidth * 0.09,
     marginLeft: windowWidth * 0.02,
+    paddingLeft: windowWidth * 0.03,
+  },
+  type: {
+    paddingTop: windowHeight * 0.02,
+    color: '#372a0c',
+    fontSize: 15,
+    fontWeight: 'bold',
+    paddingLeft: windowWidth * 0.03,
   },
 });

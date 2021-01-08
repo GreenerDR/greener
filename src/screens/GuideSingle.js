@@ -8,7 +8,6 @@ import {
   ScrollView,
   Linking,
 } from 'react-native';
-import Markdown from 'react-native-markdown-package';
 import styles from '../styles/guideSingle';
 
 export default function GuideSingle(props) {

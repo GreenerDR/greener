@@ -65,7 +65,6 @@ export default class CarouselMain extends Component {
 const styles = StyleSheet.create({
   image: {
     width: width,
-    // height: height / 3.6,
     height: height / 4.3,
   },
 });

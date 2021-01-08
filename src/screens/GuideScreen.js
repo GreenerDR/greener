@@ -9,7 +9,6 @@ import {
 } from 'react-native';
 import { Feather } from '@expo/vector-icons';
 import GuidesData from '../utils/GuidesData';
-// import styles from '../css/styles';
 
 const data = GuidesData();
 
@@ -116,7 +115,6 @@ export default class GuideScreen extends Component {
           >
             Ver todos
           </Text>
-          {/* <Text style={styles.seeAll}>Ver todo</Text> */}
         </View>
       </SafeAreaView>
     );
@@ -151,7 +149,6 @@ const styles = StyleSheet.create({
     width: 30,
     height: 30,
     tintColor: '#8BC63F',
-    // marginTop: -30,
     marginBottom: -28,
     marginHorizontal: 15,
     marginVertical: -28,

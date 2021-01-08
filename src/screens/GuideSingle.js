@@ -8,8 +8,6 @@ import {
   ScrollView,
   Linking,
 } from 'react-native';
-// import { Card, Title, Paragraph } from 'react-native-paper';
-// import Markdown from 'react-native-markdown-display';
 import Markdown from 'react-native-markdown-package';
 import styles from '../styles/guideSingle';
 
@@ -30,7 +28,6 @@ export default function GuideSingle(props) {
           style={{
             flex: 1,
             padding: 16,
-          //  backgroundColor: '#fff',
           }}
         >
           <View
@@ -59,11 +56,6 @@ export default function GuideSingle(props) {
                   </View>
                 </TouchableOpacity>
               </View>
-              {/* <View style={styles.stepText}>
-                <Markdown style={styles.step}>
-                  {guideDetail.description}
-               </Markdown>
-              </View> */}
             </View>
           </View>
         </View>

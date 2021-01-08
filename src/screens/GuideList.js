@@ -1,4 +1,4 @@
-import React, { Component, useEffect, useState, useMemo } from 'react';
+import React, { useEffect, useState, useMemo } from 'react';
 import {
   Text,
   View,
@@ -94,8 +94,6 @@ const styles = StyleSheet.create({
     marginTop: 15,
     backgroundColor: '#fff',
     flexDirection: 'column',
-    // width: windowWidth,
-    // height: windowHeight,
   },
   image: {
     width: windowWidth * 0.35,
@@ -103,7 +101,6 @@ const styles = StyleSheet.create({
     borderRadius: 8,
   },
   title: {
-    // flex: 1,
     marginTop: -30,
     marginHorizontal: 10,
     fontWeight: 'bold',

@@ -1,10 +1,8 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { Text, View, SafeAreaView, TouchableOpacity } from 'react-native';
-// import { SupportStack } from '../components/StacksH';
 import { MaterialCommunityIcons, Feather } from '@expo/vector-icons';
 import styles from '../styles/supportS';
 import { Linking } from 'react-native';
-// import SupportForm from '../components/SupportForm';
 
 export default function SupportScreen() {
   return (
@@ -12,7 +10,6 @@ export default function SupportScreen() {
       <View style={{ flex: 1, padding: 16, backgroundColor: '#fff' }}>
         <View
           style={{
-            // flex: 1,
             alignItems: 'center',
             marginVertical: 50,
           }}
@@ -29,7 +26,6 @@ export default function SupportScreen() {
           >
             <Text style={styles.buttonTextS}>Soporte Greener</Text>
           </TouchableOpacity>
-          {/* <SupportForm /> */}
           <View style={styles.contactContainer}>
             <Text style={styles.contact}>Contáctanos</Text>
             <TouchableOpacity

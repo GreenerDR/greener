@@ -67,7 +67,9 @@ export default function SupportScreen() {
             <TouchableOpacity
               style={styles.button}
               onPress={() =>
-                Linking.openURL('https://github.com/GreenerDR/greener/wiki')
+                Linking.openURL(
+                  'https://github.com/GreenerDR/greener/wiki/Manual-de-usuario-Greener-App',
+                )
               }
             >
               <Text style={styles.buttonText}>Manual de usuario</Text>

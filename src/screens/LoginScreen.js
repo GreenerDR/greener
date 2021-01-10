@@ -29,6 +29,8 @@ export default class LoginScreen extends Component {
       const response = await Google.logInAsync({
         iosClientId: IOS_CLIENT_ID,
         androidClientId: ANDROID_CLIENT_ID,
+        androidStandaloneAppClientId: ANDROID_CLIENT_ID,
+        behavior: 'web',
         success: ['profile', 'email'],
       });
       if (response.type === 'success') {
@@ -51,6 +53,7 @@ export default class LoginScreen extends Component {
       await Facebook.initializeAsync(APP_ID);
       const { type, token } = await Facebook.logInWithReadPermissionsAsync({
         permissions: ['public_profile', 'email'],
+        behavior: 'web',
       });
       if (type === 'success') {
         // Get the user's name using Facebook's Graph API

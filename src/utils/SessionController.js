@@ -40,7 +40,6 @@ export function logIn(userData) {
 export async function isLoggedIn() {
   const data = await getData();
   if (data) {
-    console.log(data);
     return true;
   }
   return false;

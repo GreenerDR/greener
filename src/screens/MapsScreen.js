@@ -2,7 +2,6 @@ import React, { useState, useEffect, useRef, useCallback } from 'react';
 import MapView from 'react-native-maps';
 import { Marker } from 'react-native-maps';
 import {
-  StyleSheet,
   Text,
   TouchableOpacity,
   View,
@@ -24,7 +23,6 @@ import {
   TouchableOpacity as Touchable,
 } from 'react-native-gesture-handler';
 
-const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
 
 const DATA = [
@@ -115,29 +113,30 @@ export default function MapsScreen({ navigation }) {
   useEffect(
     function () {
       let mounted = true;
-      if (selectedItem.title == 'Todos') {
-        setSelectedAllLocations(0);
-      } else if (selectedItem.title == 'Centros de acopio') {
-        setSelectedAllLocations(1);
-      } else if (selectedItem.title == 'Tiendas') {
-        setSelectedAllLocations(2);
-      } else if (selectedItem.title == 'Contenedores') {
-        setSelectedAllLocations(3);
+      if (mounted) {
+        if (selectedItem.title === 'Todos') {
+          setSelectedAllLocations(0);
+        } else if (selectedItem.title === 'Centros de acopio') {
+          setSelectedAllLocations(1);
+        } else if (selectedItem.title === 'Tiendas') {
+          setSelectedAllLocations(2);
+        } else if (selectedItem.title === 'Contenedores') {
+          setSelectedAllLocations(3);
+        }
       }
       return () => (mounted = false);
     },
     [selectedItem],
   );
 
-  // pasar a funcion util
   const locationCustomPin = (item) => {
-    if (item.locationType.id == 1) {
+    if (item.locationType.id === 1) {
       return require('../../assets/centroAcopio.png');
     }
-    if (item.locationType.id == 2) {
+    if (item.locationType.id === 2) {
       return require('../../assets/tiendaEco.png');
     }
-    if (item.locationType.id == 3) {
+    if (item.locationType.id === 3) {
       return require('../../assets/contenedor.png');
     }
   };
@@ -163,11 +162,11 @@ export default function MapsScreen({ navigation }) {
       let unfilteredArray = placesData;
       let filteredArray;
 
-      if (IDTipo == 0) {
+      if (IDTipo === 0) {
         filteredArray = unfilteredArray;
       } else {
         filteredArray = unfilteredArray.filter(function (item) {
-          return item.locationType.id == IDTipo;
+          return item.locationType.id === IDTipo;
         });
       }
 
@@ -185,7 +184,7 @@ export default function MapsScreen({ navigation }) {
         />
       ));
     },
-    [placesData, locationCustomPin],
+    [placesData, navigation],
   );
   const renderBottomSheetContent = () => (
     <View style={styles.bottomSheet}>
@@ -208,7 +207,7 @@ export default function MapsScreen({ navigation }) {
     </View>
   );
 
-  if (isConected == false) {
+  if (isConected === false) {
     return (
       <View style={styles.noInternetScreen}>
         <View style={styles.noInternetContainer}>

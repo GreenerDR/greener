@@ -1,27 +1,16 @@
 import React from 'react';
-import {
-  Text,
-  View,
-  StyleSheet,
-  Image,
-  Dimensions,
-  PixelRatio,
-  ScrollView,
-} from 'react-native';
+import { Text, View, Image, ScrollView } from 'react-native';
 import { FontAwesome5 } from '@expo/vector-icons';
 import { Feather } from '@expo/vector-icons';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import * as Linking from 'expo-linking';
 import LocationImages from '../components/LocationImages';
-
-const windowWidth = Dimensions.get('window').width;
-const windowHeight = Dimensions.get('window').height;
+import styles from '../styles/locationS';
 
 export default function LocationScreen(props) {
   const { route } = props;
   const locationDetail = route.params;
   const imagesArray = locationDetail.images;
-
   function imagesForm() {
     if (imagesArray.length > 1) {
       return <LocationImages imagesArray={imagesArray} />;
@@ -40,6 +29,7 @@ export default function LocationScreen(props) {
         <Text style={styles.mainTitle}>{locationDetail.title}</Text>
         {imagesForm()}
         <Text style={styles.secondTitle}>{locationDetail.title}</Text>
+        <Text style={styles.type}>{locationDetail.locationType.type}</Text>
         <Text style={styles.description}>{locationDetail.description}</Text>
         <View style={styles.section}>
           <View style={styles.detailsSection}>
@@ -97,56 +87,3 @@ export default function LocationScreen(props) {
     </ScrollView>
   );
 }
-
-const styles = StyleSheet.create({
-  mainContainer: {
-    backgroundColor: '#fff',
-    flex: 1,
-  },
-  mainTitle: {
-    color: '#372a0c',
-    fontSize: 30,
-    marginTop: windowHeight * 0.025,
-    padding: windowWidth * 0.02,
-    paddingBottom: windowHeight * 0.03,
-  },
-  secondTitle: {
-    paddingTop: windowHeight * 0.02,
-    color: '#372a0c',
-    fontSize: 20,
-    paddingLeft: windowWidth * 0.03,
-  },
-  description: {
-    color: '#6da14b',
-    marginRight: windowWidth * 0.01,
-    fontSize: 15,
-    padding: windowWidth * 0.03,
-  },
-  imageContainer: {
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  image: {
-    width: windowWidth * 0.8,
-    height: windowWidth * 0.8,
-  },
-  section: {
-    marginTop: windowHeight * 0.02,
-  },
-  detailsSection: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    width: windowWidth,
-  },
-  redirectText: {
-    color: 'blue',
-    padding: windowWidth * 0.02,
-    marginLeft: windowWidth * 0.01,
-    fontSize: 15,
-    marginRight: windowWidth * 0.1,
-  },
-  sectionIcon: {
-    width: windowWidth * 0.09,
-    marginLeft: windowWidth * 0.02,
-  },
-});

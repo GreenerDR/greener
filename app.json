@@ -1,14 +1,14 @@
 {
   "expo": {
-    "name": "greener",
-    "slug": "greener",
+    "name": "Greener",
+    "slug": "Greener",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/icon.png",
+    "icon": "./assets/greenerIcon.png",
     "splash": {
-      "image": "./assets/splash.png",
+      "image": "./assets/logoSplash.png",
       "resizeMode": "contain",
-      "backgroundColor": "#ffffff"
+      "backgroundColor": "#372a0c"
     },
     "facebookScheme": "fb1652493498261994",
     "facebookAppId": "1652493498261994",
@@ -28,6 +28,9 @@
         "googleMaps": {
           "apiKey": "AIzaSyCoreZJ0cI1mwJBJyEpLWaZS9GwBVXCLVI"
         }
+      },
+      "adaptiveIcon": {
+        "backgroundColor": "#372a0c"
       },
       "versionCode": 1
     },

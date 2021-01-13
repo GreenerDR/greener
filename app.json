@@ -18,12 +18,17 @@
     },
     "assetBundlePatterns": ["**/*"],
     "ios": {
-      "bundleIdentifier": "com.greener.greener",
+      "bundleIdentifier": "host.exp.exponent",
       "buildNumber": "1.0.0",
-      "supportsTablet": true
+      "supportsTablet": true,
+      "config": {
+        "googleSignIn": {
+          "reservedClientId": ""
+        }
+      }
     },
     "android": {
-      "package": "com.greener.greener",
+      "package": "host.exp.exponent",
       "config": {
         "googleMaps": {
           "apiKey": "AIzaSyCoreZJ0cI1mwJBJyEpLWaZS9GwBVXCLVI"

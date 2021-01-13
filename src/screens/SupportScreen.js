@@ -16,7 +16,7 @@ export default function SupportScreen() {
         >
           <Text style={styles.title}>Soporte</Text>
           <Text style={styles.subtitle}>
-            Tienes alguna pregunta o duda, escríbenos
+          ¿Tienes alguna pregunta o duda? Escríbenos
           </Text>
           <TouchableOpacity
             style={styles.buttonS}

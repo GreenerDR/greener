@@ -21,11 +21,6 @@ export default function SupportForm() {
     <View style={styles.container}>
       <View>
         <Text style={styles.label}>Título</Text>
-        {/* <TextInput
-          onChangeText={(value) => {
-            setValue('Problema con la app', value);
-          }}
-        /> */}
         <Controller
           name="Título"
           control={control}
@@ -37,7 +32,6 @@ export default function SupportForm() {
             <TextInput
               {...props}
               style={styles.input}
-              //   placeholder="Título"
               onChangeText={(value) => {
                 props.onChange(value);
               }}
@@ -48,11 +42,6 @@ export default function SupportForm() {
       </View>
       <View>
         <Text style={styles.label}>Descripción</Text>
-        {/* <TextInput
-          onChangeText={(value) => {
-            setValue('No me carga la app', value);
-          }}
-        /> */}
         <Controller
           name="Descripción"
           control={control}
@@ -64,7 +53,6 @@ export default function SupportForm() {
             <TextInput
               {...props}
               style={styles.input}
-              //   placeholder="Descripción"
               onChangeText={(value) => {
                 props.onChange(value);
               }}

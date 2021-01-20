@@ -68,7 +68,7 @@ export default function SupportScreen() {
               style={styles.button}
               onPress={() =>
                 Linking.openURL(
-                  'https://github.com/GreenerDR/greener/wiki/Manual-de-usuario-Greener-App',
+                  'https://github.com/GreenerDR/greener/wiki',
                 )
               }
             >

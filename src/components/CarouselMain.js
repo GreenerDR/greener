@@ -1,3 +1,4 @@
+/* eslint-disable react-native/no-inline-styles */
 import React, { Component } from 'react';
 import { View, Dimensions, Image, StyleSheet } from 'react-native';
 import Carousel from 'react-native-looped-carousel';
